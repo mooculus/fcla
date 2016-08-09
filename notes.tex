@@ -1,0 +1,794 @@
+\documentclass[11pt,notitlepage]{article}
+\usepackage{amsmath, amsthm, amssymb,todonotes, enumerate,color,pigpen,mathtools}
+\usepackage{graphicx}%authblk
+\usepackage[v2]{xy}
+\xyoption{all}
+\topmargin  = -1cm
+\textwidth  = 16cm \textheight = 24cm
+\voffset-.75cm\hoffset=-1.7cm
+\parindent  = 0pt
+\pdfpageheight 11in
+\pagestyle{empty}
+%\flushbottom
+%\renewcommand\Authfont{\scshape}
+%\renewcommand\Affilfont{\small}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem*{thm}{Theorem}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{conjecture}[equation]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{example}[equation]{Example}
+\newtheorem{exercise}[equation]{Exercise}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{observation}[equation]{Observation}
+\newtheorem{question}[equation]{Question}
+\newtheorem*{ques}{Question}
+\newtheorem{construction}[equation]{Construction}
+\newtheorem{claim}[equation]{Claim}
+
+
+\newcommand\wt{\widetilde}
+\newcommand\ov{\overline}
+\newcommand\inj{\rightarrowtail}
+\newcommand\surj{\twoheadrightarrow}
+\newcommand{\harpoon}{\overset{\rightharpoonup}}
+
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+
+
+\title{Linear Algebra}
+\author{}
+\maketitle
+\vskip.3in
+
+\tableofcontents
+
+\section{Preface} These are a summary of the lectures given in Math 2568 in Summer 2015. The course covers the basics of Linear Algebra, starting with systems of equations, and ending with vector spaces. At the end of the course, we give the application to least-squares fitting of data.
+\vskip.3in
+
+\section{Linear Systems of equations} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Definition} A {\it linear function in one variable} is of the form $f(x) = ax+b$ where $x$ is a variable and $a,b$ are numbers (or scalars, as they are referred to in linear algebra). It is {\it homogeneous} if $b=0$. Similarly, a {\it linear function in n variables} is one of the form
+\[
+f(x_1,x_2,\dots,x_n) = a_1x_1 + a_2x_2 + \dots a_nx_n + b
+\]
+where the $x_i$ are variables (or unknowns) and the $a_i$ are scalars. Again, the linear function is called {\it homogeneous} if the constant term $b$ is zero. Next, a {\it linear equation in n variables} is one of the form
+\[
+a_1x_1 + a_2x_2 + \dots a_nx_n =  b
+\]
+where the expression on the left is a linear homogeneoous function in $n$ variables, and the term on the right is a constant. So, for example, 
+\begin{equation}\label{eqn:ex1}
+3x_1 - 7x_2 + 11x_3 = 14
+\end{equation}
+
+is a linear equation in three variables - $x_1, x_2$, and $x_3$. A {\it solution} to a linear equation is an assignment of values to each of the variables appearing which makes the equation hold true. Returning to the example in the equation (\ref{eqn:ex1}), we see
+\[
+x_1 = 1, x_2 = 0, x_3 = 1
+\]
+is a solution, because when substituted into the left-hnd side it results in the value 14. Finally, a {\it system of equations} is a collection of linear equations in the same set of vriables, or unknowns
+\begin{alignat*}{5}\tag{2.2}\label{eqn:sys}
+a_{11}x_1 &&+ a_{12}x_2 && + {}\ldots{} && + a_{1n}x_n && =  b_1 &\\
+a_{21}x_1 + && a_{22}x_2 + &&  {}\ldots{} && + a_{2n}x_n &&  = b_2 &\\
+\vdotswithin{a_{m1}x_1} &&  \vdotswithin{a_{m2}x_2} &&  {}\ldots{} &&  \vdotswithin{a_{mn}x_n} &&   \vdotswithin{b_m} &\\
+a_{m1}x_1 &&+ a_{m2}x_2 && + {}\ldots{} && + a_{mn}x_n && =  b_m &
+\end{alignat*}
+
+and a {\it solution} to that system is an assignment of values to the variables which make {\it each equation} hold true. Note that systems of equations, or even a single equation, need to have a solution. To illustrate, consider the equation
+\[
+0x_1 + 0x_2 + 0x_3 = 4
+\]
+Obviously, any set of values substituted into the left-hand side of this equation will produce the value zero, which is not equal to 4. But even non-zero systems might not have a solution. As an example, consider
+\begin{alignat*}{3}
+x_1 && - 2x_2 && =& \phantom{1}7 \\
+2x_1 && - 4x_2 && =& 16 
+\end{alignat*}
+The left-hand side of the second equation is twice that of the first. So if we take any solution of the first equation and plug in those values on the left-hand side of the second equation, we will always get $2*7 = 14\ne 16$. Therefore, these two equations will never be simultaneously satisfied, and so the system doesn't have a solution.
+\vskip,2in
+A system which has at least one solution is called {\it consistent}. If it doesn't have any solutons it is called {\it inconsistent}. The main questions we need to answer are:
+\vskip.1in
+
+\begin{question} Given a system of equations, does it have one or more solutions (in other words is it consistent)?
+\end{question}
+\vskip.05in
+\begin{question} If it is consistent, what are the solutions?
+\end{question}
+\vskip.3in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Finding solutions} To begin with, some terminology. A system consisting of $m$ equations in the same collection of $n$ unknowns is referred to as an $m\times n$ system, which reads as: \lq\lq m-by-n system\rq\rq; such a system is illustrated in (2.2). The number of rows $m$ and the number of columns $n$ are called the {\it dimensions} of the system. The system is
+\begin{itemize}
+\item {\it Underdetermined} if $m < n$ (less equations than unknowns);
+\item {\it Overdetermined} if $m > n$ (more equations than unknowns);
+\item {\it Balanced} if $m = n$ (same number of equatins as unknowns).
+\end{itemize}
+Also,
+\begin{itemize}
+\item The {\it solution set} of a system of equations is the collection (or set) of all solutions;
+\item Two $m\times n$ systems are {equivalent} if and only if they have the same solution set.
+\end{itemize}
+
+Given a system of equations, how can we find its solution set? The answer is by finding a simpler but equivalent system for which the solution set is easily read off. The method used for finding this simpler system is called {\it row reduction}, and the operations used to perform row reduction are called {\it row operations}, of which there are three types. 
+\vskip.1in
+\begin{enumerate}
+\item[[{\bf Type I}]] Switching two rows;
+\item[[\bf{Type II}]] Multiplying a row by a non-zero scalar $\alpha$;
+\item [[\bf{Type III}]]Adding a multiple of one row to another distinct row.
+\end{enumerate} 
+\vskip.1in
+It is quite easy to see the the first two types of row operations won't change the solution set, and it can also be shown that the third doesn't either. We'll say that two systems of the same dimensions are {\it row equivalent} if one can be gotten from the other by a sequence of row operatons. The following theorem tells us about when this happens.
+
+\begin{theorem} Two systems of the same dimensions are row equivalent if and only if they are euqivalent.
+\end{theorem}
+
+Now to proceed in an efficient manner, it will be convenient to represent a system in terms of its essential information. This is accomplished by means of the {\it augmented coefficient matrix} or {\it ACM} corresponding to a given system. Starting with the $m\times n$ system in (2.2), the augmented coefficient matrix is given by
+\[
+A = 
+\begin{amatrix}{4}
+a_{11} &a_{12} &{}\ldots{} &a_{1n} &b_1 \\
+a_{21} &a_{22} &{}\ldots{} &a_{2n} &b_2 \\
+\vdotswithin{a_{m1}} &\vdotswithin{a_{m2}} &{}\ldots{} &\vdotswithin{a_{mn}} &\vdotswithin{b_m} \\
+a_{m1} &a_{m2} &{}\ldots{} &a_{mn} &b_m 
+\end{amatrix}
+\]
+This is a matrix with $m$ rows and $(n+1)$ columns. Executing a number of row operations and then computing the ACM gives the same result as first forming the ACM and performing the row operations on that matrix. Because the ACM contains all of the information relevant for solving the system, and is less cumbersome to work with, we will always form the ACM {\it first}, and perform  row operations on that matrix. 
+\vskip.2in
+
+The simplified form in which we would like to get our matrix is referred to as {\it reduced row echelon form}. This is a term which applies to matrices in general, not just augmented coefficient matrices.
+
+\begin{definition} A matrix $B$ of numbers is in {\it row-echelon form} if
+\begin{itemize}
+\item Every row of zeros lies below every non-zero row;
+\item the left-most non-zero entry of a non-zero row is 1 (called a {\it leading} 1);
+\item if both row $k$ and row $(k+1)$ are non-zero, the leading 1 in row $(k+1)$ appears to the right of the leading row in row $k$.
+\end{itemize}
+It is in {\it reduced row-echelon form} if in addition to being in row echelon form it satisfies the property
+\begin{itemize}
+\item In every column that contains a leading 1, that leading 1 is the only non-zero entry.
+\end{itemize}
+\end{definition}
+
+\begin{example} Consider the three matrices
+\[
+A = \begin{bmatrix}
+1 & 2 & -1 & 4\\
+0 & 0 & 1 & 3\\
+0 & 1 & 0 & 2
+\end{bmatrix},\qquad
+B = \begin{bmatrix}
+1 & 2 & 3 & 4\\
+0 & 1 & 5 & 7\\
+0 & 0 & 0 & 1
+\end{bmatrix},\qquad
+C = \begin{bmatrix}
+1 & 0 & 0 & 4\\
+0 & 1 & 0 & 3\\
+0 & 0 & 1 & 1
+\end{bmatrix}
+\]
+\end{example}
+
+The matrix $A$ is not in row echelon form, while $B$ is in row echelon but not reduced row echelon form, and $C$ is in reduced row echelon form (the reader should check this, and understand why for each example). The main fact we will need to know is
+
+\begin{theorem} Every matrix of numbers is row-equivalent to one which is in reduced row echelon form.
+\end{theorem}
+\vskip.2in
+
+The reduced row echelon form of a matrix is unique; for that reason we will refer to {\it the} reduced row echelon form of a matrix $A$, and write it as $rref(A)$. When $A$ is the ACM of a system of equations, $rref(A)$ tells us essentially everything we would like to know about the original system. The way it does this is summarized by the next result.
+
+\begin{theorem} Let $A$ be the ACM of an $m\times n$ system of equations. Then the system
+\begin{itemize}
+\item is inconsistent precisely when $rref(A)$ contains a row of the form
+\[
+[0\ \ 0\ \ 0\ \ 0\ \dots\ \ 0\ \ |\ \ 1];
+\]
+\item has a unique solution precisely when each column of $rref(A)$ except the right-most column contains a leading 1;
+\item has infinitely many solutions when it is i) consistent, and ii) at least one of the first n columns of $rref(A)$ does not contain a leading 1.
+\end{itemize}
+In the last case, the solution set is parametrized by the variables appearing in the original system which are indexed by the columns of $rref(A)$ to the left of the bar which do not contain a leading 1.
+\end{theorem}
+
+It is important to note that when $A$ is the ACM of a system, $rref(A)$ is the ACM of another system equivalent to the original one, which is the reduced row echelon form of the original system. In this reduced row echelon form, it {\it is} possible for an equation to consist of all zeros. If it does, we do not delete it from the system, because we want to maintain the original dimensions.
+
+\begin{example} The rref of the ACM is given by
+\[
+rref(A) = 
+\begin{amatrix}{4}
+1 & 2 & 3 & 0 & 5\\
+0 & 0 & 0 & 1 & 7 \\
+0 & 0 & 0 & 0 & 1
+\end{amatrix}
+\]
+In this case, we would conclude that the system is {\it inconsistent}, because of the last row (to understand why a row like this makes the system inconsistent, the reader should write down the equation to which it corresponds, and see what they can say about solutions to that single equation).
+\end{example}
+\vskip.2in
+\begin{example} The rref of the ACM is given by
+\[
+rref(A) = 
+\begin{amatrix}{4}
+1 & 0 & 0 & 0 & 5\\
+0 & 1 & 0 & 0 & -2 \\
+0 & 0 & 1 & 0 & 4\\
+0 & 0 & 0 & 1 & 10
+\end{amatrix}
+\]
+
+In this case, every column to the left of the bar dividing the {\it coefficient matrix} from the augmented part contains a leading 1. Hence there is a unique solution (the reader should write down the equations corresponding to this ACM, and see how those equations actually give the exact solution).
+\end{example} 
+\vskip.2in
+
+\begin{example} The rref of the ACM is given by
+\[
+rref(A) = 
+\begin{amatrix}{4}
+1 & 0 & 0 & 3 & 7\\
+0 & 1 & 0 & 1 & 5 \\
+0 & 0 & 1 & 2 & 2\\
+0 & 0 & 0 & 0 & 0
+\end{amatrix}
+\]
+Here we have a $4\times 4$ system which has infinitely many solutions; this is seen by noting i) it is consistent, and ii) the fourth column does not contains a leading 1 (the reader should write down the four equations corresponding to this matrix and then rewrite each equation so that they express the original four variables $x_1,x_2,x_3,x_4$ as linear functions in $x_4$, which is the independent parameter in this case. Since we only have one parameter, the result is a {\it one-parameter family of solutions}).
+\end{example}
+\vskip.2in
+
+In the process of putting the ACM in reduced row echelon form, it is often desirable to keep track of the precise row operations being used. For this, some notation is useful. The following table summarizes the notation we have used in class.
+\vskip.2in
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}\hline\hline
+    \phantom{x} & \phantom{x} & \phantom{x}\\
+    \Large{Type} &\Large{What it does} &\Large{Indicated by}\\ \hline
+    \phantom{x} & {\large Switches} & \phantom{\Huge X}\\
+    \large{Type I} &{\large $i^{th}$ and $j^{th}$} & {\large $R_i\leftrightarrow R_j$}\\ 
+    \phantom{x} & {\large rows} & \phantom{x}\\ \hline
+    \phantom{x} &{\large Multiplies} & \phantom{\Huge X}\\
+    \large{Type II} &{\large $i^{th}$ row} & {\large $r\cdot R_i$}\\
+    \phantom{x} & {\large by $r\ne 0$} & \phantom{x}\\ \hline
+    \phantom{x} &{\large Adds} & \phantom{\Huge X}\\
+    \large{Type III} &{\large $a$ times the $i^{th}$ row} & {\large $a\cdot R_i$ added to $R_j$}\\
+    \phantom{x} & {\large to the $j^{th}$ row} & \phantom{x}\\\hline\hline
+    \end{tabular}
+    \end{center}
+\vskip.2in
+
+At this point, we see that the reduced row echelon form of the ACM allows use to solve the system. However, we have not discussed how the transition to that form is accomplished. The following algorithm describes that process (this appears as steps 1 - 6 on p. 20 of the text).
+\vskip.2in
+\begin{enumerate}
+\item[{\bf Step 1}] Determine the left-most column containing a non-zero entry (it exists if the matrix is non-zero).
+\item[{\bf Step 2}] If needed, perform a type I operation so that the first non-zero column has an entry in the first row.
+\item[{\bf Step 3}] If needed, perform a type II operation to make that first non-zero entry 1 (the leading 1 in the first row).
+\item[{\bf Step 4}] Perform type III operations to make the entries below this leading 1 equal to 0.
+\item[{\bf Step 5}] Repeat the previous four steps on the submatrix consisting of all except the first row, until reaching the end of the rows.
+\item[{\bf Step 6}] For each row containing a leading 1, proceed upward using type III operations to  make zero any entry appearing above a leading 1.
+\end{enumerate}
+\vskip.2in
+To summarize,
+
+\begin{theorem} Every system of equations is uniquely represented by its associated augmented coefficient matrix (ACM), and every ACM results from a unique system of equations, up to a labeling of the indeterminates. The solution set to the system can be determined by i) putting the ACM in reduced row echelon form (rref), and ii) reading off the solution(s) from the resulting matrix. Moreover, the computation of rref(ACM) can be performed in a systematic fashion, by following the algorithmic procedure listed above.
+\end{theorem}
+
+\vskip.3in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Matrices}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Matrix Operations (algebraic and otherwise)} We begin by recalling some notation and terminology regarding matrices. A {\it matrix} will mean a rectangular array whose entries are of the same type. Thus, we could have an array of real numbers, complex numbers, functions, or even matrices. An {\it $m\times n$ matrix} will refer to one which has $m$ rows and $n$ columns, and the {\it collection of all $m\times n$ matrices of real numbers} will be denoted by $\mathbb R^{m\times n}$. We adopt the convention, used by MATLAB, in which the $(i,j)^{th}\ entry$ of the matrix $A$ (that in row $i$ and column $j$) is denoted by $A(i,j)$. Also, following MATLAB notaton, we will write the $i^{th}$ row as $A(i,:)$, and the $j^{th}$ column as $A(:,j)$. Before getting to the operations themselves, we first record
+
+\begin{definition} Two matrices $A$ and $B$ are {\it equal} if $A(i,j) = B(i,j)$ for all $i,j$.
+\end{definition}
+Note that this equality forces $A$ and $B$ to have the same dimensions, because if they had different dimensions, there would have to be a choice of indices $(i,j)$ for which one side of the equation exists, but the other does not. Thus, equality can be reformulated as saying: $A$ and $B$ have the same dimensions, and the same entry in each place.
+\vskip.2in
+Matrix algebra uses three different types of operations.
+\vskip.1in
+
+{\bf\underbar{Matrix Addition}} If $A$ and $B$ have the same dimensions, then the sum $A+B$ is given by\footnote{ In what follows, the symbol \lq\lq$:=$\rq\rq\ is used to indicate that the expression to the left of the symbol is {\it defined to be} what appears to the right of the symbol.}
+\[
+(A+B)(i,j) := A(i,j) + B(i,j)
+\]
+
+Note that the dimensions of $A+B$ are the same as those of (both) $A$ and $B$.
+\vskip.1in
+
+{\bf\underbar{Scalar Multiplication}} If $A$ is a matrix and $\alpha$ a scalar, the {scalar product} of $\alpha$ with $A$ is given by
+\[
+(\alpha A)(i,j) := (\alpha)A(i,j)
+\]
+There are no restrictions on the dimension of $A$ for this operation to be defined.
+\vskip.1in
+
+{\bf\underbar{Matrix Multiplication}} This is the most complicated of the three operations. If $A$ is $m\times n$ and $B$ is $p\times q$, then in order for the product $A*B$ to be defined, we require that $n = p$; this condition is expressed by saying that {\it the internal dimensions agree}. In this case
+\[
+(A*B)(i,k) := \sum_{j=1}^n A(i,j)B(j,k)
+\]
+The dimensions of the product are $m\times q$.
+\vskip.1in
+
+These different types of products may both be viewed as extensions of ordinary multiplication of real numbers. In fact, if we identify numerical $1\times 1$ matrices with scalars, then in that dimenson the two product operations both correspond to ordinary multiplication. It is important to note that matrix muptiplication can be performed whenever the sum of products appearing on the right-hand side is well-defined. This fact will come into play later on.
+\vskip.2in
+
+The operations for matrix algebra satisfy similar properties to those for addition and multiplication of real numbers. The following theorem lists those properties. In each case, the expression on the left is defined iff that on the right is also defined.
+
+\begin{theorem}\label{thm:matalg} Let $A,B,C$ denote matrices, and $\alpha,\beta$ scalars.
+
+\begin{enumerate}
+\item $A+B = B+A$ (commutativity of addition);
+\item $A+(B+C) = (A+B)+C$ (associativity of addition);
+\item $\alpha(A+B) = \alpha A + \alpha B$ (scalar multiplication distributes over matrix addition);
+\item $A*(B+C) = A*B + A*C$ (matrix multiplication left-distributes over matrix addition);
+\item $(A+B)*C = A*C + B*C$ (matrix multiplication right-distributes over matrix addition);
+\item $(\alpha\beta)A = \alpha(\beta A)$ (associativity of scalar multiplication);
+\item $A*(B*C) = (A*B)*C$ (associativity of matrix multiplication).
+\end{enumerate}
+\end{theorem}
+
+This theorem is proven by showing that, in each case, the matrix on the left has the same $(i,j)^{th}$ entry as the one on the right. However, as with any proof, one needs to be clear from the beginning exactly what one is allowed to {\it assume} as being true. In this case, we have i) the definition of what it means for two matrices to be equal, ii) the explicit definition of each operation, and iii) the corresponding properties for addition and multiplication for real numbers (which will be taken as axioms for this proof). To see how this works, let's verify the first equality. 
+
+\begin{proof} (of 3.2.1)
+\begin{align*}
+(A+B)(i,j) &= A(i,j) + B(i,j)\qquad{\rm by\ the\ definition\ of\ matrix\ addition}\\
+                &= B(i,j) + A(i,j)\qquad{\rm by\ commutativity\ of\ addition\ for\ real\ numbers}\\
+               &= (B+A)(i,j)\qquad\quad\ {\rm by\ the\ definition\ of\ matrix\ addition}
+\end{align*}
+\end{proof}
+
+Notice that the proof consists of a sequence of equalities, beginning with the left-hand side of the equation we wish to verify, and ending with the right-hand side of that equation. Moreover, each equality in the sequence is justified by either a definition, or an axiom. Not all of the equalities are that easy; some may require more steps. To illustrate a more involved proof, we will verify property 7 (probably the most difficult to prove of the properties listed).
+
+\begin{proof} (of 3.2.7) In this proof, $i,j,k,l$ will be used as indices (the reason for using four different indices will become apparant).
+\begin{alignat*}{3}
+(A*(B*C))(i,l)  =& \sum_j A(i,j)(B*C)(j,l)&&\qquad{\rm by\ the\ definition\ of\ matrix\ multiplication}&\\
+                =& \sum_j A(i,j)\left(\sum_k B(j,k)C(k,l)\right)&&\qquad{\rm by\ the\ definition\ of\ matrix\ multiplication}&\\
+                =& \sum_j\left(\sum_k A(i,j)\Big(B(j,k)C(k,l)\Big)\right)&&\qquad{\rm by\ property\ 4\ for\ real\ numbers}&\\
+                =& \sum_j\left(\sum_k \Big(A(i,j)(B(j,k)\Big)C(k,l)\right)&&\qquad{\rm by\ property\ 7\ for\ real\ numbers}&\\
+                =& \sum_k\left(\sum_j \Big(A(i,j)(B(j,k)\Big)C(k,l)\right)&&\qquad{\rm by\ property\ 1\ for\ real\ numbers}&\\
+                =& \sum_k\left(\Big(\sum_j A(i,j)(B(j,k)\Big)C(k,l)\right)&&\qquad{\rm by\ property\ 5\ for\ real\ numbers}&\\
+                =& \sum_k\left(\sum_k (A*B)(i,k)C(k,l)\right)&&\qquad{\rm by\ the\ definition\ of\ matrix\ multiplication}&\\
+                =& ((A*B)*C)(i,l)&&\qquad{\rm by\ the\ definition\ of\ matrix\ multiplication}&\\
+\end{alignat*}
+\end{proof}
+\vskip.2in
+
+\begin{exercise} Using the above two proofs as models, prove properties (3.2.2) - (3.2.6).
+\end{exercise}
+
+Before moving on to considering equations, we introduce a few more matrix operatons.
+
+\begin{definition} The {\it transpose} of the matrix $A$, written as $A^T$, is always defined, and given by
+\[
+\left(A^T\right)(i,j) := A(j,i)
+\]
+\end{definition}
+The way this operation relates to the algebraic operations defined above is described by the next theorem.
+
+\begin{theorem} Let $A$ and $B$ be matrices. Then
+\begin{enumerate}
+\item $(A+B)^T = A^T + B^T$;
+\item $(A*B)^T = B^T*A^T$;
+\item $\left(A^T\right)^T = A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise} Verify these properties in the same manner as in the previous exercise.
+\end{exercise}
+
+Also, one can concatenate matrices. Specifically,
+
+\begin{definition} If $A$ is $m\times n$ and $B$ is $m\times p$, then the {\it horizontal} concatenation of $A$ and $B$ is written as
+\[
+\begin{bmatrix} 
+A & B
+\end{bmatrix};
+\] 
+it is the $m\times (n+p)$ matrix where $A$ appears as the left-most $m\times n$ block, and $B$ appears as the right-most $m\times p$ block. Similarly, if $C$ is $q\times n$, then the {\it vertical concatenation} of $A$ and $C$ is written as
+\[
+\begin{bmatrix} 
+A\\ C
+\end{bmatrix};
+\]
+It is the $(m+q)\times n$ matrix where $A$ appears in the upper $m\times n$ block, and $C$ in the lower $q\times n$ block.
+\end{definition}
+Concatenation can be done multiple times. Any matrix $A$ can be viewed as 
+\begin{itemize}
+\item the horizontal concatenation of its columns, and
+\item the vertical concatenation of its rows.
+\end{itemize}
+
+In what follows, the horizontal type of concatenation will be used much more often than vertical one; for that reason {\it concatenation} (direction unspecified) will refer to {\it horizontal concatenation}. The following exercise will allow the reader to better understand how concatenation interacts with the algebraic operations, and the transpose. It is not an exhaustive list.
+
+\begin{exercise} Let $A, B, C, D$ denote matrices all with the same number of rows. Show that
+\begin{enumerate}
+\item If the pairs $A,C$ and $B,D$ the same number of columns as well, then
+\[
+\begin{bmatrix} A & B\end{bmatrix} + \begin{bmatrix} C & D\end{bmatrix} = \begin{bmatrix} (A+C) & (B+D)\end{bmatrix}.
+\]
+\item With respect to products, one has
+\[
+A*\begin{bmatrix} B & C\end{bmatrix} = \begin{bmatrix} A*B & A*C\end{bmatrix}.
+\]
+\item With respect to transpose, one has
+\[
+\begin{bmatrix} A & B\end{bmatrix}^T = \begin{bmatrix} A^T \\ B^T\end{bmatrix}
+\]
+\end{enumerate}
+\end{exercise}
+
+Finally, we discuss the identity matrix and inverses. Recall that a {\it number} $\alpha$ is invertible if there is another number $\beta$ such that $\alpha\beta = 1$. A similar notion exists for matrices. To explain it, we first need to define the matrix equivalent of the number \lq\lq 1".
+
+\begin{definition} The {\it identity matrix} $I = I^{n\times n}$ is the $n\times n$ matrix with $I(i,j) = \begin{cases}1\ \ \rm{if}\ i=j\\0\ \ \rm{if}\ i\ne j\end{cases}$.
+\end{definition}
+
+In most cases the dimension of $I$ will not be indicated, as it will be uniquely determined by the manner in which it is being used. For example, if it appeaars as a term in a matrix product, then its dimension is assumed to be the one which makes the product well-defined. This rule applies for the following 
+
+\begin{proposition} For any matrix $A$, $I*A = A$ and $A*I = A$
+\end{proposition}
+
+\begin{exercise} Verify these two equalities.
+\end{exercise}
+
+\begin{definition} An $m\times n$ matrix $A$ is {\it invertible} if there is an $n\times m$ matrix $B$ satisfying
+\[
+A*B = I^{m\times m}, B*A = I^{n\times n}
+\]
+\end{definition}
+
+Apriori, is seems there is no dimensional restriction on a matrix for it to be invertible. However, the following theorem clarifies the situation. The reason for why it is true will become clear later on when we discuss the rank of a matrix.
+
+\begin{theorem} A matrix $A$ can only be invertible if it is square ($m = n$). In this case $A*B =I$ iff $B*A = I$ (every one-sided inverse is a two-sided inverse).
+\end{theorem}
+
+\begin{exercise} Show that the inverse of an invertible matrix is unique.
+\end{exercise}
+
+Given this, we will refer to {\it the} inverse of an invertible matrix $A$, and write it as $A^{-1}$. An alternative term for invertible is {\it non-singular} (so {\it singular} is equivalent to being  {\it non-invertible}). Two important questions are: under what conditions is a square matrix non-singular? And if a matrix is non-zingular, how can one find its inverse? These questions are answered by 
+
+\begin{theorem} Let $A$ be an $n\times n$ matrix. Then either
+\begin{itemize}
+\item $rref(A) = I$, which happens precisely when $A$ is non-singular;
+\item the bottom row of $rref(A)$ is entirely zero, which happens precisely when $A$ is singular.
+\end{itemize}
+Moreover, when $A$ is non-singular, one has
+\[
+rref([A\ \ I]) = [I\ \ A^{-1}]
+\]
+\end{theorem}
+
+\begin{exercise} Using the above theorem, show that the only matrix which is both invertible and in reduced row echelon form is the identity matrix (of a given dimension).
+
+\end{exercise}
+\vskip.3in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Matrix equations}
+
+A matrix with one row is called a {\it row} vector, and if it has one column a {\it column} vector. The term {\it vector}, for now, will refer to a column vector. Matrices and vectors can be used to rewrite systems of equations as a single equation, and there are advantages to doing this. To begin with, notice that the system appearing in (\ref{eqn:sys}) can be expressed as the single {\it vector equation}
+\begin{equation}\label{eqn:vec1}
+\begin{bmatrix}
+a_{11}x_1\ \  + &a_{12}x_2\ \  + &{}\ldots{}\ \  + &a_{1n}x_n\\ 
+a_{21}x_1\ \  + &a_{22}x_2\ \  + &{}\ldots{}\ \  + & a_{2n}x_n\\
+\vdots\ \  &  \vdots\ \  &  {}\ldots{}\ \  &  \vdots\\
+a_{m1}x_1\ \  + &a_{m2}x_2\ \  + &{}\ldots{}\ \  + &a_{mn}x_n 
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_m
+\end{bmatrix}
+\end{equation}
+The vector on the left above consists of entries which are linear homogeneous functions in the variables $x_1,x_2,\dots,x_n$. A {\it solution} to this vector equation will be exactly what it was before; and assignment of values to the variables $x_1,x_2,\dots,x_n$ which make the equation true. 
+\vskip.2in
+
+Now the expression on the left in (\ref{eqn:vec1}) can be written as a sum of its components, where the $x_i$ component can be derived by setting all of the other variables to zero. The result is 
+\begin{equation}\label{eqn:vec2}
+\begin{bmatrix}
+a_{11}x_1\\ 
+a_{21}x_1\\
+\vdots\\
+a_{m1}x_1
+\end{bmatrix} +
+\begin{bmatrix}
+a_{12}x_2\\ 
+a_{22}x_2\\
+\vdots\\
+a_{m2}x_2
+\end{bmatrix} +\dots +
+\begin{bmatrix}
+a_{1n}x_n\\ 
+a_{2n}x_n\\
+\vdots\\
+a_{mn}x_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_m
+\end{bmatrix}
+\end{equation}
+Next we observe that the $i^{th}$ component, which involves only $x_i$, can be factored as
+\begin{equation}\label{eqn:veci}
+\begin{bmatrix}
+a_{1i}x_i\\ 
+a_{2i}x_i\\
+\vdots\\
+a_{mi}x_i
+\end{bmatrix}
+=
+x_i\begin{bmatrix}
+a_{1i}\\ 
+a_{2i}\\
+\vdots\\
+a_{mi}
+\end{bmatrix}
+\end{equation}
+Using this, the vector equation (\ref{eqn:vec2}) may be rewritten as
+\begin{equation}\label{eqn:vec3}
+x_1\begin{bmatrix}
+a_{11}\\ 
+a_{21}\\
+\vdots\\
+a_{m1}
+\end{bmatrix} +
+x_2\begin{bmatrix}
+a_{12}\\ 
+a_{22}\\
+\vdots\\
+a_{m2}
+\end{bmatrix} +\dots +
+x_n\begin{bmatrix}
+a_{1n}\\ 
+a_{2n}\\
+\vdots\\
+a_{mn}
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_m
+\end{bmatrix}
+\end{equation}
+The left-hand side of this last equation leads us to one of the central constructions in all of Linear Algebra.
+
+\begin{definition} Given a collection of vectors $\{v_1,v_2,\dots,v_n\}$, a {\it linear combination} of these vectors is a sum of the form
+\[
+\alpha_1v_1 + \alpha_2v_2 +\dots + \alpha_nv_n
+\]
+where the coefficients $\alpha_i$ are scalars.
+\end{definition}
+In words, it is {\it a sum of scalar multiples of the vectors} $v_1,v_2,\dots v_n$. Now the expression on the left of (\ref{eqn:vec3}) is a linear combination of sorts, but where the coefficients are scalar-valued variables rather than actual scalars. So for any assignment of values to the variables $x_1,x_2,\dots x_n$ we get an actual linear combination.
+\vskip.2in
+
+Finally, going back to equation (\ref{eqn:vec1}) we observe that the left-hand side can be written as $A*{\bf x}$, where $A$ is the $m\times n$ {\it coefficient matrix}
+\begin{equation}
+\label{eqn:coeff}
+A = \begin{bmatrix}
+a_{11}  &a_{12} &{}\ldots{} &a_{1n}\\ 
+a_{21} &a_{22} &{}\ldots{} & a_{2n}\\
+\vdots\ \  &  \vdots\ \  &  {}\ldots{}\ \  &  \vdots\\
+a_{m1} &a_{m2} &{}\ldots{} &a_{mn} 
+\end{bmatrix}
+\end{equation}
+and ${\bf x}$ is the $n\times 1$ vector variable
+\begin{equation}
+\label{eqn:coeff}
+{\bf x} = \begin{bmatrix}
+x_1\\ 
+x_2\\
+\vdots\\
+x_n 
+\end{bmatrix}
+\end{equation}
+which leads to our final equivalent form of (\ref{eqn:vec1}), referred to as the {\it matrix equation associated to the system of equations}:
+\begin{equation}\label{eqn:mat}
+A*{\bf x} = {\bf b}
+\end{equation}
+where ${\bf b}$ is the vector ${\bf b} := [b_1\  b_2\ \dots\  b_m]^T$. As with (\ref{eqn:vec1}), a solution is an assignment of a particular numerical vector to $\bf x$ making the equation true, and matrix equation is {\it consistent} iff such an {\bf x} exists. Summarizing
+
+\begin{theorem} The system of equations appearing in (\ref{eqn:sys}) is equivalently represented by the vector equations appearing in (\ref{eqn:vec1}), (\ref{eqn:vec2}), (\ref{eqn:vec3}), as well as the matrix equation (\ref{eqn:mat}). Moreover, the system is consistent precisely when the vector {\bf b} can be written as a linear combination of the columns of the coefficient matrix $A$. 
+\end{theorem}
+
+\begin{proof} The only point needing verification is the last statement. But this follows from (\ref{eqn:vec3}), which can be more succinctly written as
+\[
+x_1 A(:,1) + x_2 A(:,2) +\dots x_n A(:,n) = {\bf b}
+\]
+ since any solution will yield a particular set of values for $x_1,x_2,\dots,x_n$ to take as scalars on the left so that the resulting linear combination produces {\bf b}, while a particular linear combination which results in {\bf b} would in turn produce a solution to (\ref{eqn:vec3}).
+\end{proof}
+
+The last part of this theorem is sometimes called the {\it consistency theorem for systems of equations}. We will occasionally refer to it in this way. Finally, we consider the case of a matrix equation
+\begin{equation}\label{eqn:inv}
+A*{\bf x} = {\bf b}
+\end{equation}
+when $A$ is invertible. If we assume ${\bf x}_0$ is a solution, we can multiply both sides of the equation on the left by $A^{-1}$ to get
+\[
+{\bf x}_0 = I*{\bf x}_0 = (A^{-1}*A)*{\bf x}_0 = A^{-1}*(A*{\bf x}_0) = A^{-1}*{\bf b}
+\]
+On the other hand, if we take $x = A^{-1}*{\bf b}$ and substitute into equation (\ref{eqn:inv}), we get
+\[
+A*(A^{-1}*{\bf b}) = (A*A^{-1})*{\bf b} = I*{\bf b} = {\bf b}
+\]
+In other words, we have shown
+
+\begin{theorem} If $A$ is an invertible $n\times n$ matrix, then for any $n\times 1$ vector ${\bf b}$ and $n\times 1$ vector variable ${\bf x}$, the matrix equation
+\[
+A*{\bf x} = {\bf b}
+\]
+is consistent, and has a unique solution given by ${\bf x} = A^{-1}*{\bf b}$.
+\end{theorem}
+\vskip.3in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Vector spaces}
+
+\subsection{$\mathbb R^n$} Recall from above that $\mathbb R^{m\times n}$ denotes the set of all $m\times n$ matrices with real entries, and that the elements of this set are called row resp.\ column vectors when $m=1$ resp.\ $n=1$. Our convention will be to denote $\mathbb R^{m\times 1}$ as simply $\mathbb R^m$. In other words, a {\it real m-dimensional vector} will always refer to an $m\times 1$ real column vector (for reasons of spatial economy, though, when writing an element of $\mathbb R^m$ in coordinate form, we will often express it as the transpose of a row vector).
+\vskip.2in
+
+From the definition of matrix addition and scalar multiplication, we see that we can i) add two vectors together, and ii) multiply a vector by a scalar, with the result being a (possibly different) vector in the same space that we started with. In other words,
+\vskip.1in
+
+\begin{itemize}
+\item[[C1]] (Closure under vector addition) Given ${\bf v}, {\bf w}\in\mathbb R^n$, ${\bf v} + {\bf w}\in\mathbb R^n$.
+\item[[C2]] (Closure under scalar multiplication) Given ${\bf v}\in\mathbb R^n$ and $\alpha\in\mathbb R$, $\alpha{\bf v}\in\mathbb R^n$.
+\end{itemize}
+\vskip.1in
+
+Moreover, the space $\mathbb R^n$ equipped with these two operations satisfies certain fundamental properties. In what follows, $\bf u$, $\bf v$, $\bf w$ denote arbitrary vectors in $\mathbb R^n$, while $\alpha,\beta$ represent arbitrary scalars in $\mathbb R$.
+
+\begin{itemize}
+\item[[A1]] (Commutativity of addition) ${\bf v} + {\bf w} = {\bf w} + {\bf v}$.
+\item[[A2]] (Associativity of addition) $({\bf u} + {\bf v}) + {\bf w} = {\bf u} + ({\bf v} + {\bf w})$.
+\item[[A3]] (Existence of a zero vector) There is a vector ${\bf z}$ with ${\bf z} + {\bf v} = {\bf v} + {\bf z} = {\bf v}$.
+\item[[A4]] (Existence of additive inverses) For each $\bf v$, there is a vector $-{\bf v}$ with ${\bf v} + (-{\bf v}) = (-{\bf v}) + {\bf v} = {\bf z}$.
+\item[[A5]] (Distributivity of scalar multiplication over vector addition) $\alpha({\bf v} + {\bf w}) = \alpha{\bf v} + \alpha{\bf w}$.
+\item[[A6]] (Distributivity of scalar addition over scalar multiplication) $(\alpha + \beta){\bf v} = \alpha{\bf v} + \beta{\bf v}$.
+\item[[A7]] (Associativity of scalar multiplication) $(\alpha \beta){\bf v}) = (\alpha(\beta {\bf v})$.
+\item[[A8]] (Scalar multiplication with 1 is the identity) $1{\bf v} = {\bf v}$.
+\end{itemize}
+\vskip.2in
+
+We should briefly mention why $\mathbb R^n$ satisfies these properties. First, the definition of matrix addition and scalar multiplication imply [C1] and [C2]. The properties [A1] - [A8], excepting [A3] and [A4],are  a consequence of Theorem \ref{thm:matalg}. The so-called {\it existential} properties (referring to the fact they claim the existence of certain vectors) follow by direct observation. 
+\vskip.2in
+These properties isolate the fundamental algebraic structure of $\mathbb R^n$, and lead to the following definition (one of the most certral in all of linear algebra).
+\vskip.2in
+
+\begin{definition} A {\it vector space} is a set $V$ equipped with two operations - vector addition \lq\lq$+$\rq\rq\ and scalar multiplication \lq\lq$\cdot$\rq\rq - which satisfy the closure axioms [C1] and [C2], as well as the eight \lq\lq vector space axioms\rq\rq [A1] - [A8].
+\end{definition}
+
+In this way, a vector space should properly be represented as a triple $(V,+,\cdot)$, to emphasize the fact that the algebraic structure depends not just on the underlying set of vectors, but on the choice of operations representing addition and scalar multiplication.
+\vskip.2in
+
+\begin{example} Let $V = \mathbb R^{m\times n}$, the space of $m\times n$ matrices, with addition given by matrix addition and scalar multiplication as defined for matrices. Then $(\mathbb R^{m\times n},+,\cdot)$ is a vector space. Again, as with $\mathbb R^n$, the closure axioms are seen to be satisfied as a direct consequence of the definitions, while the other properties follow from Theorem \ref{thm:matalg} together with direct construction of the $m\times n$ \lq\lq zero vector\rq\rq\ $0^{m\times n}$, as well as additive inverses as indicated in [A4].
+\end{example}
+
+Before proceeding to other examples, we need to discuss an important point regarding how theorems about vector spaces are typically proven. In any system of mathematics, one operates with a certain set of assumptions, called {\it axioms}, together with various results previously proven (possibly in other areas of mathematics) and which one is allowed to assume true without further verification.
+\vskip.2in
+
+In the case of {\it vector spaces over $\mathbb R$} (i.e. where the scalars are real numbers), the standing assumption is that the above list of ten properties hold for the real numbers. The fastidious reader will note that this was already assumed in the proof of Theorem \ref{thm:matalg}; in fact the proof of that theorem would have been impossible without such an assumption. To illustrate how this foundational assumption applies in a different context, we consider
+\[
+F[a,b] = \ \text{the space of real-valued functions on the closed interval }[a,b]
+\]
+Recall that i) a function is completely determined by the values it takes on the elements of its domain, and therefore ii) two functions $f, g$ are {\it equal} iff they have the same domain and $f(x) = g(x)$ for all elements $x$ in their common domain. So in order to show two functions $f$ and $g$ on the closed interval $[a,b]$ are equal, it suffices to verify that $f(c) = g(c)$ for all $a\le c\le b$.
+\vskip.2in
+
+Next recall that the sum of two functions is given by
+\[
+(f+g)(x) := f(x) + g(x)
+\]
+while the scalar multiple $\alpha f$ of the function $f$ is given by
+\[
+(\alpha f)(x) := \alpha(f(x))
+\]
+
+\begin{example} Equipped with addition and scalar multiplication as just defined, $(F[a,b],+,\cdot)$ is a vector space.
+\end{example}
+
+
+\begin{proof} One begins by verifying the two closure axioms. If $f,g\in F[a,b]$, they are real-valued functions with common domain $[a,b]$; hence their sum is defined by the above equation, and has the same domain, making $f+g$ a function in $F[a,b]$. Similarly, if $f\in F[a,b]$ and $\alpha\in\mathbb R$, then multiplying $f$ by $\alpha$ leaves the domain unchanged, so $\alpha f\in F[a,b]$.
+\vskip.2in
+The eight vector space axioms [A1] - [A8] are of two types. The third and fourth are {\it existential} - they assert the existence of the zero element and additive inverses, respectively. To verify these, one simply has to produce the candidate satisfying the requisite properties. The remaining six are {\it universal}. They involve statements which hold for all collections of vectors for which the given equality makes sense. We will verify each of the eight axioms in detail. This example, then, can be used as a template for how to proceed in other cases with verification that a proposed candidate vector space is in fact one. 
+\vskip.2in
+
+[A1]: For all $f,g\in F[a,b]$ and $x\in [a,b]$,
+\begin{align*}
+(f+g)(x) &= f(x) + g(x)\quad\text{by definition of addition for functions}\\
+             &= g(x) + f(x)\quad\text{by commutativity of addition for real numbers}\\
+             &=(g+f)(x)\quad\text{by definition of addition for real numbers}
+\end{align*}
+\vskip.2in
+
+[A2]: For all $f,g,h\in F[a,b]$ and $x\in [a,b]$,
+\begin{align*}
+((f+g)+h)(x) &= (f+g)(x) + h(x)\quad\text{by definition of addition for functions}\\
+                     &= (f(x) + g(x)) + h(x)\quad\text{by definition of addition for functions}\\
+                     &=f(x) + (g(x)) + h(x))\quad\text{by associativity of addition for real numbers}\\
+                     &=f(x) + (g+h)(x)\quad\text{by definition of addition for functions}\\
+                     &= (f+(g+h))(x)\quad\text{by definition of addition for functions}
+\end{align*}
+\vskip.2in
+
+[A3]: Define $z\in F[a,b]$ by $z(x) = 0, a\le x\le b$. Then for all $f\in F[a,b]$ and $x\in [a,b]$, 
+\begin{align*}
+(z+f)(x) &= z(x) + f(x)\quad\text{by definition of addition for functions}\\
+             &= 0 + f(x)\quad\text{by definition of $z$}\\
+             &= f(x)\quad\text{by the defining property of $0\in\mathbb R$}\\
+             &= f(x) + 0\quad\text{by the defining property of $0\in\mathbb R$}\\
+             &= f(x) + z(x)\quad\text{by definition of $z$}\\
+             &= (f + z)(x)\quad\text{by definition of addition for functions}
+\end{align*}
+\vskip.2in
+
+[A4]: For each $f\in F[a,b]$, define $(-f)(x) := -(f(x))$ (note the different placement of parentheses on the two sides of the equation). Then for all $f\in F[a,b]$ and $x\in [a,b]$, 
+\begin{align*}
+(f + (-f))(x) &= f(x) + (-f)(x)\quad\text{by definition of addition for functions}\\
+             &= f(x) + (-f(x))\quad\text{by definition of $(-f)$}\\
+             &= 0\quad\text{by the property of additive inverses in $\mathbb R$}\\
+             &= z(x)\quad\text{by the definition of $z\in F[a,b]$}\\
+             &= 0\quad\text{by the definition of $z\in F[a,b]$}\\
+             &= -f(x) + f(x)\quad\text{by the property of additive inverses in $\mathbb R$}\\
+             &= ((-f) + f)(x)\quad\text{by definition of addition for functions}
+\end{align*}
+\vskip.2in
+
+[A5]: For all $f,g\in F[a,b]$ and $\alpha, x\in [a,b]$,
+\begin{align*}
+(\alpha (f+g))(x) &= \alpha((f+g)(x))\quad\text{by definition of scalar multiplication for functions}\\
+             &= \alpha(f(x) + g(x))\quad\text{by definition of addition for functions}\\
+             &= \alpha f(x) + \alpha g(x)\quad\text{by distributivity of multiplication over addition in $\mathbb R$}\\
+             &= (\alpha f)(x) + (\alpha g)(x)\quad\text{by definition of scalar multiplication for functions}\\
+             &= ((\alpha f) + (\alpha g))(x)\quad\text{by definition of addition for functions}
+\end{align*}
+\vskip.2in
+
+[A6]: For all $f\in F[a,b]$ and $\alpha,\beta, x\in [a,b]$,
+\begin{align*}
+((\alpha +\beta)f)(x) &= (\alpha +\beta)f(x)\quad\text{by definition of scalar multiplication for functions}\\
+             &= \alpha f(x) + \beta f(x)\quad\text{by distributivity of multiplication over addition in $\mathbb R$}\\
+             &= (\alpha f)(x) + (\beta f)(x)\quad\text{by definition of scalar multiplication for functions}\\
+             &= ((\alpha f) + (\beta f))(x)\quad\text{by definition of addition for functions}
+\end{align*}
+\vskip.2in
+
+[A7]: For all $f\in F[a,b]$ and $\alpha,\beta, x\in [a,b]$,
+\begin{align*}
+((\alpha \beta)f)(x) &= (\alpha \beta)f(x)\quad\text{by definition of scalar multiplication for functions}\\
+             &= \alpha(\beta f(x))\quad\text{by associativity of multiplication in $\mathbb R$}\\
+             &= \alpha ((\beta f)(x))\quad\text{by definition of scalar multiplication for functions}\\
+             &= (\alpha(\beta f))(x)\quad\text{by definition of scalar multiplication for functions}
+\end{align*}
+\vskip.2in
+
+[A8]: For all $f\in F[a,b]$ and $x\in [a,b]$,
+\begin{align*}
+(1\cdot f)(x) &= 1\cdot f(x)\quad\text{by definition of scalar multiplication for functions}\\
+                     &= f(x)\quad\text{by the multiplicative property of $1\in\mathbb R$}
+\end{align*}
+\end{proof}
+\vskip.2in
+
+\begin{exercise} Show that $(\mathbb R^{m\times n}, +,\cdot)$ is a vector space, where \lq\lq +\rq\rq\ denotes matrix addition, and \lq\lq$\cdot$\rq\rq\ denotes scalar multiplication for matrices (hint: use the results of Theorem \ref{thm:matalg}).
+\end{exercise}
+\end{document}
