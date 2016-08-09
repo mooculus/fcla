@@ -17,45 +17,47 @@ A solution of a system of linear equations in $n$ variables, $\scalarlist{x}{n}$
 More typically, we will write a solution in a form like $x_1=12$, $x_2=-7$, $x_3=2$ to mean that $s_1=12$, $s_2=-7$, $s_3=2$ in the above notation.
 
 \begin{exercise}
-Consider the system of equations
-\begin{align*}
-x_1+2x_2 + x_4&= 7,\\
-x_1+x_2+x_3-x_4&=3,\\
-3x_1+x_2+5x_3-7x_4&=1.
-\end{align*}
-
-\begin{question}
-Which of the following are solutions to the system?
-\begin{multipleChoice}
-\choice[correct]{$x_{1}=-2$, $x_{2}=4$, $x_{3}=2$, $x_{4}=1$}
-\choice{$x_{1}=-2$, $x_{2}=5$, $x_{3}=3$, $x_{4}=4$}
-\end{multipleChoice}
-\end{question}
-
-\begin{question}
-Is $x_{1}=-12$, $x_{2}=11$, $x_{3}=1$, $x_{4}=-3$ a solution to the system?
-\begin{multipleChoice}
-\choice[correct]{Yes}
-\choice{No}
-\end{multipleChoice}
-
-\begin{feedback}
-Both $x_{1}=-12$, $x_{2}=11$, $x_{3}=1$, $x_{4}=-3$ and $x_{1}=-2$, $x_{2}=4$, $x_{3}=2$, $x_{4}=1$ are solutions to the system.
-\end{feedback}
-\end{question}
-
+  Consider the system of equations
+  \begin{align*}
+    x_1+2x_2 + x_4&= 7,\\
+    x_1+x_2+x_3-x_4&=3,\\
+    3x_1+x_2+5x_3-7x_4&=1.
+  \end{align*}
+  
+  \begin{question}
+    Which of the following are solutions to the system?
+    \begin{multipleChoice}
+      \choice[correct]{$x_{1}=-2$, $x_{2}=4$, $x_{3}=2$, $x_{4}=1$}
+      \choice{$x_{1}=-2$, $x_{2}=5$, $x_{3}=3$, $x_{4}=4$}
+    \end{multipleChoice}
+  \end{question}
+  
+  \begin{question}
+    Is $x_{1}=-12$, $x_{2}=11$, $x_{3}=1$, $x_{4}=-3$ a solution to the system?
+    \begin{multipleChoice}
+      \choice[correct]{Yes}
+      \choice{No}
+    \end{multipleChoice}
+    
+    \begin{feedback}
+      We have already seen that $x_{1}=-2$, $x_{2}=4$, $x_{3}=2$,
+      $x_{4}=1$ is a solution, but no we also see that $x_{1}=-12$,
+      $x_{2}=11$, $x_{3}=1$, $x_{4}=-3$ is a solution, too.
+    \end{feedback}
+  \end{question}
+  
 \end{exercise}
 
 To discuss \textit{all} of the possible solutions to a system of linear equations, we now define the set of all solutions.
 
 \begin{definition}
-The solution set of a linear system of equations is the set which contains every solution to the system, and nothing more.
+  The solution set of a linear system of equations is the set which contains every solution to the system, and nothing more.
 \end{definition}
 
-Be aware that a solution set might consist of a single solution, of infinitely many solutions---or there may be no solutions, in which case we write the solution set as the empty set, $\varnothing$.  Let's see some examples of these possibilities.
 
 \begin{problem}
-
+  Be aware that a solution set might consist of a single solution, of infinitely many solutions---or there may be no solutions, in which case we write the solution set as the empty set, $\varnothing$.  Let's explore some examples of these possibilities.
+  
   \begin{example}
     Consider the system of two equations with two variables,
     \begin{align*}
@@ -63,41 +65,51 @@ Be aware that a solution set might consist of a single solution, of infinitely m
       x_1-x_2&=4
     \end{align*}
     
-    If we plot the solutions to each of these equations separately on the
-    $x_{1}x_{2}$-plane, we get \wordChoice{\choice{one line}\choice[correct]{two lines}}.  In which point do these lines intersect?
-    \begin{multipleChoice}
-      \choice[correct]{$(x_1,\,x_2)=(3,\,-1)$}
-      \choice{$(x_1,\,x_2)=(-3,\,1)$}
-    \end{multipleChoice}
+    \begin{question}
+      If we plot the solutions to each of these equations separately on the
+      $x_{1}x_{2}$-plane, we get \wordChoice{\choice{one line}\choice[correct]{two lines}}.
+    \end{question}
 
-    \begin{feedback}
-      These lines have exactly one point in common.  From the geometry, we believe that this is the only solution to the system of equations, and so we say the solution is unique.
-    \end{feedback}
+    \begin{question}
+      In which point do these two lines intersect?
+      \begin{multipleChoice}
+        \choice[correct]{$(x_1,\,x_2)=(3,\,-1)$}
+        \choice{$(x_1,\,x_2)=(-3,\,1)$}
+      \end{multipleChoice}
+
+      \begin{feedback}
+        These lines have exactly one point in common.  From the geometry, we believe that this is the only solution to the system of equations, and so we say the solution is unique.
+      \end{feedback}
+    \end{question}
   \end{example}
 
   \begin{example}
     Now adjust the system with a different second equation,
     \begin{align*}
-      2x_1+3x_2&=3\\
-      4x_1+6x_2&=6
+      2x_1+3x_2&=3,\\
+      4x_1+6x_2&=6.
     \end{align*}
 
-    A plot of the solutions to these equations individually results in two lines, one on top of the other!  How many pairs of points satisfy both these equations?
-    \begin{multipleChoice}
-      \choice{No points satisfy both equations}
-      \choice{Exactly one point satisfies both equations}
-      \choice[correct]{Infinitely many points satisfy both equations}
-    \end{multipleChoice}    
+    \begin{question}
+      A plot of the solutions to these equations individually results in two lines, one on top of the other!  How many pairs of points satisfy both these equations?
+      \begin{multipleChoice}
+        \choice{No points satisfy both equations}
+        \choice{Exactly one point satisfies both equations}
+        \choice[correct]{Infinitely many points satisfy both equations}
+      \end{multipleChoice}    
     
-    \begin{feedback}
-      There are infinitely many pairs of points that make both equations true.  You will learn soon how to describe this infinite solution set precisely.
-    \end{feedback}
+      \begin{feedback}
+        There are infinitely many pairs of points that make both equations true.  You will learn soon how to describe this infinite solution set precisely.
+      \end{feedback}
+    \end{question}
 
-    How does the second equation relate to the first equation?
-    \begin{multipleChoice}
-      \choice[correct]{The second equation is a twice the first equation.}
-      \choice{The second equation is a three times the first equation.}
-    \end{multipleChoice}
+    \begin{question}
+      How does the second equation relate to the first equation?
+      \begin{multipleChoice}
+        \choice[correct]{The second equation is a twice the first equation.}
+        \choice{The second equation is a three times the first equation.}
+      \end{multipleChoice}
+    \end{question}
   \end{example}
 
   \begin{example}
@@ -107,16 +119,24 @@ Be aware that a solution set might consist of a single solution, of infinitely m
       4x_1+6x_2&=10
     \end{align*}
 
-    A plot now reveals \wordChoice{\choice{one line}\choice[correct]{two lines}} with \wordChoice{\choice{positive slope}\choice[correct]{identical slopes}}.  Consequently, how many pairs of points satisfy both these equations?
-    \begin{multipleChoice}
-      \choice[correct]{No points satisfy both equations}
-      \choice{Exactly one point satisfies both equations}
-      \choice{Infinitely many points satisfy both equations}
-    \end{multipleChoice}    
+    \begin{question}
+      A plot now reveals \wordChoice{\choice{one line}\choice[correct]{two lines}} with \wordChoice{\choice{positive slope}\choice[correct]{identical slopes}}.
+    \end{question}
 
-    \begin{feedback}
-      They have no points in common, and so the system has a solution set that is empty, $S=\emptyset$.
-    \end{feedback}
+    \begin{question}
+      Consequently, how many pairs of points satisfy both these equations?
+      \begin{multipleChoice}
+        \choice[correct]{No points satisfy both equations}
+        \choice{Exactly one point satisfies both equations}
+        \choice{Infinitely many points satisfy both equations}
+      \end{multipleChoice}    
+
+      \begin{feedback}
+        They have no points in common, and so the system has a solution set that is empty, $S=\emptyset$.
+      \end{feedback}
+    \end{question}
+
+    This example exhibits all of the typical behaviors of a system of equations. A subsequent theorem will tell us that every system of linear equations has a solution set that is empty, contains a single solution or contains infinitely many solutions.
   \end{example}
 
 
