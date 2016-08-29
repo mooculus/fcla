@@ -137,24 +137,24 @@ still all zero.
 Suppose instead that the entry in row $i$ of column $j$ is nonzero.
 Notice that since $r+1\leq i\leq m$, we know the first $j-1$ entries
 of this row are all zero.  Now, in Step~(d) we increase $r$ by 1, and
-then embark on building a new nonzero row.  In Step~(e) we swap row $r$
-and row $i$.  In the first $j$ columns, the first $r-1$ rows remain in
-reduced row-echelon form after the swap.  In Step~(f) we multiply row
-$r$ by a nonzero scalar, creating a 1 in the entry in column $j$ of
-row $i$, and not changing any other rows.  This new leading 1 is the
-first nonzero entry in its row, and is located to the right of all the
-leading 1's in the preceding $r-1$ rows.  With Step~(g) we insure that
-every entry in the column with this new leading 1 is now zero, as
-required for reduced row-echelon form.  Also, rows $r+1$ through $m$
-are now all zeros in the first $j$ columns, so we now only have one
-new nonzero row, consistent with our increase of $r$ by one.
-Furthermore, since the first $j-1$ entries of row $r$ are zero, the
-employment of the third row operation does not destroy any of the
-necessary features of rows $1$ through $r-1$ and rows $r+1$ through
-$m$, in columns $1$ through $j-1$.
+then embark on building a new nonzero row.  In Step~(e) we swap row
+$r$ and row $i$.  In the first $j$ columns, the first $r-1$ rows
+remain in reduced row-echelon form after the swap.  In Step~(f) we
+multiply row $r$ by a nonzero scalar, creating a 1 in the entry in
+column $\answer{j}$ of row $\answer{i}$, and not changing any other
+rows.  This new leading 1 is the first nonzero entry in its row, and
+is located to the right of all the leading 1's in the preceding $r-1$
+rows.  With Step~(g) we insure that every entry in the column with
+this new leading 1 is now zero, as required for reduced row-echelon
+form.  Also, rows $r+1$ through $m$ are now all zeros in the first $j$
+columns, so we now only have one new nonzero row, consistent with our
+increase of $r$ by one.  Furthermore, since the first $j-1$ entries of
+row $r$ are zero, the employment of the third row operation does not
+destroy any of the necessary features of rows $1$ through $r-1$ and
+rows $r+1$ through $m$, in columns $1$ through $j-1$.
 
 So at this stage, the first $j$ columns of the matrix are in reduced
-row-echelon form.  When Step~(a) finally increases $j$ to $n+1$, then
+row-echelon form.  When Step~(a) finally increases $j$ to $\answer{n+1}$, then
 the procedure is completed and the full $n$ columns of the matrix are
 in reduced row-echelon form, with the value of $r$ correctly recording
 the number of nonzero rows.
