@@ -19,93 +19,91 @@ somehow.  This device will prove very useful later and is a
 \textit{very good habit} to start developing \textit{right now}.
 
 \begin{example}
-Let us find the solutions to the following system of equations,
-\begin{align*}
--7x_1 -6 x_2 - 12x_3 &=-33\\
- 5x_1  + 5x_2 + 7x_3 &=24\\
- x_1 +4x_3 &=5
-\end{align*}
-First, form the augmented matrix,
-\[
-\begin{bmatrix}
--7&\answer{-6}&- 12&-33\\
- 5&\answer{5}&7&24\\
- 1&\answer{0}&4&5
-\end{bmatrix}
-\]
-and work to reduced row-echelon form, first with $j=1$,
-\begin{align*}
-\xrightarrow{\rowopswap{1}{3}}
-&
-\begin{bmatrix}
-1&0&4&5\\
-5&5&7&24\\
--7&-6&-12&-33
-\end{bmatrix} \\
-\xrightarrow{\rowopadd{-5}{1}{2}}
-& \begin{bmatrix}
-1&0&4&5\\
-0&5&-13&-1\\
--7&-6&-12&-33
-\end{bmatrix}\\
-\xrightarrow{\rowopadd{7}{1}{3}}
-&
-\begin{bmatrix}
-\leading{1}&0&4&5\\
-0&5&-13&-1\\
-0&-6&16&2
-\end{bmatrix}
-\end{align*}
-Now, with $j=2$,
-\begin{align*}
-\xrightarrow{\rowopmult{\frac{1}{5}}{2}}
-&
-\begin{bmatrix}
-\leading{1}&0&4&5\\
-0&1&\frac{-13}{5}&\frac{-1}{5}\\
-0&-6&16&2
-\end{bmatrix}
-\xrightarrow{\rowopadd{6}{2}{3}}
-\begin{bmatrix}
-\leading{1}&0&4&5\\
-0&\leading{1}&\frac{-13}{5}&\frac{-1}{5}\\
-0&0&\frac{2}{5}&\frac{4}{5}
-\end{bmatrix}
-\end{align*}
-And finally, with $j=3$,
-\begin{align*}
-\xrightarrow{\rowopmult{\frac{5}{2}}{3}}
-&
-\begin{bmatrix}
-\leading{1}&0&4&5\\
-0&\leading{1}&\frac{-13}{5}&\frac{-1}{5}\\
-0&0&1&2
-\end{bmatrix}
-\xrightarrow{\rowopadd{\frac{13}{5}}{3}{2}}
-\begin{bmatrix}
-\leading{1}&0&4&5\\
-0&\leading{1}&0&5\\
-0&0&1&2
-\end{bmatrix}\\
-\xrightarrow{\rowopadd{-4}{3}{1}}
-&
-\begin{bmatrix}
-\leading{1}&0&0&\answer{-3}\\
-0&\leading{1}&0&\answer{5}\\
-0&0&\leading{1}&2
-\end{bmatrix}
-\end{align*}
-This is now the augmented matrix of a very simple system of equations, namely $x_1=\answer{-3}$, $x_2=\answer{5}$, $x_3=2$, which has an obvious solution.  
+  Let us find the solutions to the following system of equations,
+  \begin{align*}
+    -7x_1 -6 x_2 - 12x_3 &=-33\\
+    5x_1  + 5x_2 + 7x_3 &=24\\
+    x_1 +4x_3 &=5
+  \end{align*}
+  First, form the augmented matrix,
+  \[
+    \begin{bmatrix}
+      -7&\answer{-6}&- 12&-33\\
+      5&\answer{5}&7&24\\
+      1&\answer{0}&4&5
+    \end{bmatrix}
+  \]
+  and work to reduced row-echelon form, first with $j=1$,
+  \begin{align*}
+    \xrightarrow{\rowopswap{1}{3}}
+    &
+      \begin{bmatrix}
+        1&0&4&5\\
+        5&5&7&24\\
+        -7&-6&-12&-33
+      \end{bmatrix} \\
+    \xrightarrow{\rowopadd{-5}{1}{2}}
+    & \begin{bmatrix}
+      1&0&4&5\\
+      0&5&-13&-1\\
+      -7&-6&-12&-33
+    \end{bmatrix}\\
+    \xrightarrow{\rowopadd{7}{1}{3}}
+    &
+      \begin{bmatrix}
+        \leading{1}&0&4&5\\
+        0&5&-13&-1\\
+        0&-6&16&2
+      \end{bmatrix}
+  \end{align*}
+  Now, with $j=2$,
+  \begin{align*}
+    \xrightarrow{\rowopmult{\frac{1}{5}}{2}}
+    &
+      \begin{bmatrix}
+        \leading{1}&0&4&5\\
+        0&1&\frac{-13}{5}&\frac{-1}{5}\\
+        0&-6&16&2
+      \end{bmatrix}
+                 \xrightarrow{\rowopadd{6}{2}{3}}
+                 \begin{bmatrix}
+                   \leading{1}&0&4&5\\
+                   0&\leading{1}&\frac{-13}{5}&\frac{-1}{5}\\
+                   0&0&\frac{2}{5}&\frac{4}{5}
+                 \end{bmatrix}
+  \end{align*}
+  And finally, with $j=3$,
+  \begin{align*}
+    \xrightarrow{\rowopmult{\frac{5}{2}}{3}}
+    &
+      \begin{bmatrix}
+        \leading{1}&0&4&5\\
+        0&\leading{1}&\frac{-13}{5}&\frac{-1}{5}\\
+        0&0&1&2
+      \end{bmatrix}
+               \xrightarrow{\rowopadd{\frac{13}{5}}{3}{2}}
+               \begin{bmatrix}
+                 \leading{1}&0&4&5\\
+                 0&\leading{1}&0&5\\
+                 0&0&1&2
+               \end{bmatrix}\\
+    \xrightarrow{\rowopadd{-4}{3}{1}}
+    &
+      \begin{bmatrix}
+        \leading{1}&0&0&\answer{-3}\\
+        0&\leading{1}&0&\answer{5}\\
+        0&0&\leading{1}&2
+      \end{bmatrix}
+  \end{align*}
+  This is now the augmented matrix of a very simple system of equations, namely $x_1=\answer{-3}$, $x_2=\answer{5}$, $x_3=2$, which has an obvious solution.  Furthermore, we can see that this is \wordChoice{\choice[correct]{the only solution}\choice{one of many solutions}} to this system.
 
-\begin{question}
-  Furthermore, we can see that this is \wordChoice{\choice[correct]{the only solution}\choice{one of many solutions}} to this system.
-  \begin{feedback}
+  \begin{feedback}[correct]
     Indeed, we have determined the entire solution set to be
     \[
       S=\set{\colvector{-3\\5\\2}}.
     \]
   \end{feedback}
-\end{question}
+
 \end{example}
 
 \begin{example}
