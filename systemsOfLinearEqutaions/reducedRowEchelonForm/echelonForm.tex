@@ -40,7 +40,7 @@ mountain stream.
 There are a number of new terms and notation introduced in this
 definition, which should make you suspect that this is an important
 definition.  Given all there is to digest here, we will mostly save
-the use of $D$ and $F$ until <acroref type="section" acro="TSS" />.
+the use of $D$ and $F$ until later.
 However, one important point to make here is that all of these terms
 and notation apply to a matrix.  Sometimes we will employ these terms
 and sets for an augmented matrix, and other times it might be a
@@ -94,41 +94,41 @@ of matrix you are analyzing.
 
 \begin{theorem}[Row-Equivalent Matrix in Echelon Form]
   Suppose $A$ is a matrix.  Then there is a matrix $B$ so that
-  \begin{itemize}
+  \begin{enumerate}
   \item $A$ and $B$ are row-equivalent.
   \item $B$ is in reduced row-echelon form.
-  \end{itemize}
+  \end{enumerate}
 
 \begin{proof}
 Suppose that $A$ has $m$ rows and $n$ columns.  We will describe a process for converting $A$ into $B$ via row operations.  This procedure is known as \dfn{Gauss-Jordan elimination}.  Tracing through this procedure will be easier if you recognize that $i$ refers to a row that is being converted, $j$ refers to a column that is being converted, and $r$ keeps track of the number of nonzero rows.  Here we go.
 
+Begin by setting $j=0$ and $r=0$.  Then
 \begin{enumerate}
-\item Set $j=0$ and $r=0$.
 \item Increase $j$ by 1.  If $j$ now equals $n+1$, then stop.
-\item Examine the entries of $A$ in column $j$ located in rows $r+1$ through $m$.  If all of these entries are zero, then go to Step 2.
+\item Examine the entries of $A$ in column $j$ located in rows $r+1$ through $m$.  If all of these entries are zero, then go to Step~(a).
 \item Choose a row from rows $r+1$ through $m$ with a nonzero entry in column $j$.  Let $i$ denote the index for this row.
 \item Increase $r$ by 1.
 \item Use the first row operation to swap rows $i$ and $r$.
 \item Use the second row operation to convert the entry in row $r$ and column $j$ to a 1.
 \item Use the third row operation with row $r$ to convert every other entry of column $j$ to zero.
-\item Go to Step 2.
+\item Go to Step~(a).
 \end{enumerate}
 
 The result of this procedure is that the matrix $A$ is converted to a
 matrix in reduced row-echelon form, which we will refer to as $B$.  We
 need to now prove this claim by showing that the converted matrix is
 in row-echelon form.  First, the matrix is only converted through row
-operations (Steps 6, 7, 8), so $A$ and $B$ are row-equivalent.
+operations, so $A$ and $B$ are row-equivalent.
 
 It is a bit more work to be certain that $B$ is in reduced row-echelon
-form.  We claim that as we begin Step 2, the first $j$ columns of the
+form.  We claim that as we begin Step~(a), the first $j$ columns of the
 matrix are in reduced row-echelon form with $r$ nonzero rows.
 Certainly this is true at the start when $j=\answer{0}$, since the
 matrix has no columns and so vacuously meets the conditions of being
 in row-reduced echelon form with $r=0$ nonzero rows.
 
-In Step 2 we increase $j$ by 1 and begin to work with the next column.
-There are two possible outcomes for Step 3.  Suppose that every entry
+In Step~(a) we increase $j$ by 1 and begin to work with the next column.
+There are two possible outcomes for Step~(b).  Suppose that every entry
 of column $j$ in rows $r+1$ through $m$ is zero.  Then with no changes
 we recognize that the first $j$ columns of the matrix has its first
 $r$ rows still in reduced-row echelon form, with the final $m-r$ rows
@@ -136,14 +136,14 @@ still all zero.
 
 Suppose instead that the entry in row $i$ of column $j$ is nonzero.
 Notice that since $r+1\leq i\leq m$, we know the first $j-1$ entries
-of this row are all zero.  Now, in Step 5 we increase $r$ by 1, and
-then embark on building a new nonzero row.  In Step 6 we swap row $r$
+of this row are all zero.  Now, in Step~(d) we increase $r$ by 1, and
+then embark on building a new nonzero row.  In Step~(e) we swap row $r$
 and row $i$.  In the first $j$ columns, the first $r-1$ rows remain in
-reduced row-echelon form after the swap.  In Step 7 we multiply row
+reduced row-echelon form after the swap.  In Step~(f) we multiply row
 $r$ by a nonzero scalar, creating a 1 in the entry in column $j$ of
 row $i$, and not changing any other rows.  This new leading 1 is the
 first nonzero entry in its row, and is located to the right of all the
-leading 1's in the preceding $r-1$ rows.  With Step 8 we insure that
+leading 1's in the preceding $r-1$ rows.  With Step~(g) we insure that
 every entry in the column with this new leading 1 is now zero, as
 required for reduced row-echelon form.  Also, rows $r+1$ through $m$
 are now all zeros in the first $j$ columns, so we now only have one
@@ -154,7 +154,7 @@ necessary features of rows $1$ through $r-1$ and rows $r+1$ through
 $m$, in columns $1$ through $j-1$.
 
 So at this stage, the first $j$ columns of the matrix are in reduced
-row-echelon form.  When Step 2 finally increases $j$ to $n+1$, then
+row-echelon form.  When Step~(a) finally increases $j$ to $n+1$, then
 the procedure is completed and the full $n$ columns of the matrix are
 in reduced row-echelon form, with the value of $r$ correctly recording
 the number of nonzero rows.
@@ -183,7 +183,6 @@ unique.
 Suppose that $A$ is an $m\times n$ matrix and that $B$ and $C$ are $m\times n$ matrices that are row-equivalent to $A$ and in reduced row-echelon form.  Then $B=C$.
 
 \begin{proof}
-\begin{expandable}
 We need to begin with no assumptions about any relationships between $B$ and $C$, other than they are both in reduced row-echelon form, and they are both row-equivalent to $A$.
 
 If $B$ and $C$ are both row-equivalent to $A$, then they are row-equivalent to each other.  Repeated row operations on a matrix combine the rows with each other using operations that are linear, and are identical in each column.  A key observation for this proof is that each individual row of $B$ is linearly related to the rows of $C$.  This relationship is different for each row of $B$, but once we fix a row, the relationship is the same across columns.  More precisely, there are scalars $\delta_{ik}$, $1\leq i,k\leq m$ such that for any $1\leq i\leq m$, $1\leq j\leq n$,
@@ -195,13 +194,13 @@ You should read this as saying that an entry of row $i$ of $B$ (in column $j$) i
 
 We now repeatedly exploit the fact that $B$ and $C$ are in reduced row-echelon form.  Recall that a pivot column is all zeros, except a single one.  More carefully, if $R$ is a matrix in reduced row-echelon form, and $d_\ell$ is the index of a pivot column, then $\matrixentry{R}{kd_\ell}=1$ precisely when $k=\ell$ and is otherwise zero.  Notice also that any entry of $R$ that is both below the entry in row $\ell$ and to the left of column $d_\ell$ is also zero (with below and left understood to include equality).  In other words, look at examples of matrices in reduced row-echelon form and choose a leading 1 (with a box around it).  The rest of the column is also zeros, and the lower left ``quadrant'' of the matrix that begins here is totally zeros.
 
-Assuming no relationship about the form of $B$ and $C$, let $B$ have $r$ nonzero rows and denote the pivot columns as $D=\set{\scalarlist{d}{r}}$.  For $C$ let $r^\prime$ denote the number of nonzero rows and denote the pivot columns $D^\prime=\set{\,\scalarlist{d^\prime}{r^\prime}}$.  There are four steps in the proof, and the first three are about showing that $B$ and $C$ have the same number of pivot columns, in the same places.  In other words, the <q>primed</q> symbols are a necessary fiction.
+Assuming no relationship about the form of $B$ and $C$, let $B$ have $r$ nonzero rows and denote the pivot columns as $D=\set{\scalarlist{d}{r}}$.  For $C$ let $r^\prime$ denote the number of nonzero rows and denote the pivot columns $D^\prime=\set{\,\scalarlist{d^\prime}{r^\prime}}$.  There are four steps in the proof, and the first three are about showing that $B$ and $C$ have the same number of pivot columns, in the same places.  In other words, the ``primed'' symbols are a necessary fiction.
 
 \paragraph*{First Step.}  Suppose that $d_1 < d^\prime_1$.  Then
 \begin{align*}
 1
 &=\matrixentry{B}{1d_1}
-&&<acroref type="definition" acro="RREF" />\\
+\\
 &=\sum_{k=1}^{m}\delta_{1k}\matrixentry{C}{kd_1}\\
 &=\sum_{k=1}^{m}\delta_{1k}(0)
 &&d_1<d^\prime_1\\
@@ -347,7 +346,6 @@ Finally, having determined the values of the $\delta_{ij}$, we can show that $B=
 &=\matrixentry{C}{ij}
 \end{align*}
 So $B$ and $C$ have equal values in every entry, and so are the same matrix.
-\end{expandable}
 \end{proof}
 \end{theorem}
 
