@@ -98,7 +98,6 @@ of matrix you are analyzing.
   \item $A$ and $B$ are row-equivalent.
   \item $B$ is in reduced row-echelon form.
   \end{itemize}
-\end{theorem}
 
 \begin{proof}
 Suppose that $A$ has $m$ rows and $n$ columns.  We will describe a process for converting $A$ into $B$ via row operations.  This procedure is known as \dfn{Gauss-Jordan elimination}.  Tracing through this procedure will be easier if you recognize that $i$ refers to a row that is being converted, $j$ refers to a column that is being converted, and $r$ keeps track of the number of nonzero rows.  Here we go.
@@ -160,6 +159,7 @@ the procedure is completed and the full $n$ columns of the matrix are
 in reduced row-echelon form, with the value of $r$ correctly recording
 the number of nonzero rows.
 \end{proof}
+\end{theorem}
 
 So now we can put it all together.  Begin with a system of linear
 equations, and represent the system by its augmented matrix.  Use row
@@ -181,7 +181,6 @@ unique.
 
 \begin{theorem}[Reduced Row-Echelon Form is Unique]
 Suppose that $A$ is an $m\times n$ matrix and that $B$ and $C$ are $m\times n$ matrices that are row-equivalent to $A$ and in reduced row-echelon form.  Then $B=C$.
-\end{theorem}
 
 \begin{proof}
 \begin{expandable}
@@ -350,7 +349,7 @@ Finally, having determined the values of the $\delta_{ij}$, we can show that $B=
 So $B$ and $C$ have equal values in every entry, and so are the same matrix.
 \end{expandable}
 \end{proof}
-
+\end{theorem}
 
 
 \end{document}
