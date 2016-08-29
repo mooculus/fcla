@@ -76,7 +76,7 @@ Two matrices are \dfn{row-equivalent} if one can be obtained from the other by a
   \begin{question}
     Are the matrices
     \[
-      \begin{bmatrix}
+      B= \begin{bmatrix}
         1&1&0&6\\
         5&2&-2&3\\
         2&-1&3&4
@@ -84,7 +84,7 @@ Two matrices are \dfn{row-equivalent} if one can be obtained from the other by a
     \]
     and
     \[
-      \begin{bmatrix}
+      C = \begin{bmatrix}
         1&1&0&6\\
         3&0&-2&-9\\
         2&-1&3&4
@@ -122,13 +122,13 @@ Two matrices are \dfn{row-equivalent} if one can be obtained from the other by a
       \]
       is also row-equivalent to
       \[
-        \begin{bmatrix}
+        C = \begin{bmatrix}
           1&1&0&6\\
           3&0&-2&-9\\
           2&-1&3&4
         \end{bmatrix}.
       \]
-      We can also say that any pair of these three matrices are row-equivalent.
+      We can also say that any pair of these three matrices $A$, $B$, and $C$ are row-equivalent.
     \end{feedback}
   \end{question}
 \end{example}
@@ -194,43 +194,45 @@ the original system.
         1&\answer{2}&2&4\\
         0&\answer{1}&1&1\\
         2&6&5&6
-      \end{bmatrix}
-               \xrightarrow{\rowopadd{-2}{1}{3}}
-               \begin{bmatrix}
-                 \answer{1}&2&2&4\\
-                 0&1&1&1\\
-                 \answer{0}&2&1&-2
-               \end{bmatrix}\\
+      \end{bmatrix} \\
+    \xrightarrow{\rowopadd{-2}{1}{3}} 
+     &
+      \begin{bmatrix}
+        \answer{1}&2&2&4\\
+        0&1&1&1\\
+        \answer{0}&2&1&-2
+      \end{bmatrix}\\
     \xrightarrow{\rowopadd{-2}{2}{3}}
     &
       \begin{bmatrix}
         1&2&2&4\\
         0&\answer{1}&1&1\\
         0&\answer{0}&-1&-4
-      \end{bmatrix}
-                \xrightarrow{\rowopmult{-1}{3}}
-                \begin{bmatrix}
-                  1&2&2&4\\
-                  0&1& 1&1\\
-                  0&0&\answer{1}&4
-                \end{bmatrix}
+      \end{bmatrix} \\
+    \xrightarrow{\rowopmult{-1}{3}}
+     &
+       \begin{bmatrix}
+         1&2&2&4\\
+         0&1& 1&1\\
+         0&0&\answer{1}&4
+       \end{bmatrix}
   \end{align*}
   So the matrix
-\[
-B=\begin{bmatrix}
-1&2&2&4\\
-0&1& 1&1\\
-0&0&1&4
-\end{bmatrix}
-\]
-is row equivalent to $A$
-and by the theorem, the system of equations
-\begin{align*}
-x_1+2x_2+2x_3&=4\\
-x_2+ x_3&=1\\
-x_3&=4
-\end{align*}
-has the same solution set as the original system of equations.
+  \[
+    B=\begin{bmatrix}
+      1&2&2&4\\
+      0&1& 1&1\\
+      0&0&1&4
+    \end{bmatrix}
+  \]
+  is row equivalent to $A$
+  and by the theorem, the system of equations
+  \begin{align*}
+    x_1+2x_2+2x_3&=\answer{4}\\
+    x_2+ x_3&=\answer{1}\\
+    x_3&=\answer{4}
+  \end{align*}
+  has the same solution set as the original system of equations.
 \end{example}
 
 
