@@ -90,29 +90,6 @@ By its definition, a system is either inconsistent or consistent (see \ref{defin
 \end{proof}
 \end{theorem}
 
-Here is a diagram that consolidates several of our theorems from this section, and which is of practical use when you analyze systems of equations.  Note this presumes we have the reduced row-echelon form of the augmented matrix of the system to analyze.
-\begin{image}
-  \begin{tikzpicture}
-    \matrix (m) [matrix of math nodes, row sep=4em,
-    column sep=0em, text height=1.5ex, text depth=0.25ex]
-    { & & \text{Theorem RCLS} & \\
-      & \text{Consistent}& &\text{Inconsistent}\\
-      & \text{Theorem CSRN}& & \\
-      \text{Infinite Solutions}& & \text{Unique Solution}& \\
-    };
-    
-    \path[->]
-    (m-1-3) edge[thick] node[left,xshift=-1em, yshift=0.5em]
-    {$\begin{aligned}&\text{no pivot column in}\\&\text{column }n+1\end{aligned}$} (m-2-2)
-    (m-1-3) edge[thick] node[right,xshift=1em, yshift=0.5em]
-    {$\begin{aligned}&\text{pivot column in}\\&\text{column }n+1\end{aligned}$} (m-2-4)
-    % 
-    (m-2-2) edge[thick]                      (m-3-2)
-    (m-3-2) edge[thick] node[left, xshift=-1em] {$r < n$} (m-4-1)
-    (m-3-2) edge[thick] node[right, xshift=1em] {$r = n$} (m-4-3);
-  \end{tikzpicture}
-\end{image}
-
 We have one more theorem to round out our set of tools for determining solution sets to systems of linear equations.
 
 \begin{theorem}[Consistent, More Variables than Equations, Infinite solutions]
@@ -168,7 +145,9 @@ If only a single solution is needed, set all the free variables to zero and read
 \end{itemize}
 \end{enumerate}
 
-The above makes it all sound a bit simpler than it really is.  In practice, row operations employ division (usually to get a leading entry of a row to convert to a leading 1) and that will \link{introduce round-off errors}{http://www2.lawrence.edu/fast/GREGGJ/Math420/Section_6_2.pdf}.  Entries that should be zero sometimes end up being very, very small nonzero entries, or small entries lead to overflow errors when used as divisors.  A variety of strategies can be employed to minimize these sorts of errors, and this is one of the main topics in the important subject known as numerical linear algebra.
+% BADBAD: It'd be nice to actually include an example of round-off errors
+
+The above makes it all sound a bit simpler than it really is.  In practice, row operations employ division (usually to get a leading entry of a row to convert to a leading 1) and that will introduce round-off errors.  Entries that should be zero sometimes end up being very, very small nonzero entries, or small entries lead to overflow errors when used as divisors.  A variety of strategies can be employed to minimize these sorts of errors, and this is one of the main topics in the important subject known as numerical linear algebra.
 
 
 \end{document}
