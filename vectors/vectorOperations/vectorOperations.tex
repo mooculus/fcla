@@ -6,65 +6,10 @@
 
 \begin{document}
 \begin{abstract}
-  We define some new operations involving vectors, and collect some basic properties of these operations.
+  We define two operations involving vectors, and collect some basic
+  properties of these operations.
 \end{abstract}
 \maketitle
-
-We start our study of this set by first defining what it means for two vectors to be the same.
-
-\begin{definition}[Column Vector Equality]
-Suppose that $\vect{u},\,\vect{v}\in\complex{m}$.  Then $\vect{u}$ and $\vect{v}$ are \dfn{equal}, written $\vect{u}=\vect{v}$ if
-\begin{align*}
-\vectorentry{\vect{u}}{i}&=\vectorentry{\vect{v}}{i}
-&&1\leq i\leq m
-\end{align*}
-\end{definition}
-
-Now this may seem like a silly thing to say so carefully.  Of course
-two vectors are equal if they are equal for each corresponding entry!
-Well, this is not as silly as it appears.  We will see a few occasions
-later where the obvious definition is \textit{not} the right one.  And
-besides, in doing mathematics we need to be very careful about making
-all the necessary definitions and making them unambiguous.  And we
-have done that here.
-
-Notice now that the symbol ``='' is now doing triple-duty.  We know
-from our earlier education what it means for two numbers (real or
-complex) to be equal, and we take this for granted.  We already
-defined what it meant for two sets to be equal.  Now we have defined
-what it means for two vectors to be equal, and that definition builds
-on our definition for when two numbers are equal when we use the
-condition $u_i=v_i$ for all $1\leq i\leq m$.  So think carefully about
-your objects when you see an equal sign and think about just which
-notion of equality you have encountered.  This will be especially
-important when you are asked to construct proofs whose conclusion
-states that two objects are equal.
-
-Let us do an example of vector equality that begins to hint at the
-utility of this definition.
-
-% BADBAD
-\begin{example}[Vector equality for a system of equations]
-
-<indexlocation index="Archetype B!vector equality" />
-Consider the system of linear equations in \ref{archetype:B},
-<archetypepart acro="B" part="systemdefn" />
-
-
-Note the use of three equals signs---each indicates an equality of numbers (the linear expressions are numbers when we evaluate them with fixed values of the variable quantities).  Now write the vector equality,
-\[
-\colvector{-7x_1 -6 x_2 - 12x_3\\ 5x_1  + 5x_2 + 7x_3\\ x_1 +4x_3}
-=
-\colvector{-33\\24\\5}.
-\]
-This \textit{single} equality (of two column vectors) translates into
-\textit{three} simultaneous equalities of numbers that form the system
-of equations.  So with this new notion of vector equality we can
-become less reliant on referring to \textit{systems} of
-\textit{simultaneous} equations.  There is more to vector equality
-than just this, but this is a good example for starters and we will
-develop it further.
-\end{example}
 
 We will now define two operations on the set $\complex{m}$.  By this
 we mean well-defined procedures that somehow convert vectors into
@@ -83,16 +28,15 @@ entire course.
 \end{definition}
 
 So vector addition takes two vectors of the same size and combines
-them (in a natural way!) to create a new vector of the same size.
+them to create a new vector of the same size.
+
 Notice that this definition is required, even if we agree that this is
 the obvious, right, natural or correct way to do it.  Notice too that
-the symbol `+' is being recycled.  We all know how to add
+the symbol $+$ is being recycled.  We all know how to add
 \textit{numbers}, but now we have the same symbol extended to
 double-duty and we use it to indicate how to add two new objects,
-vectors.  And this definition of our new meaning is built on our
-previous meaning of addition via the expressions $u_i+v_i$.  Think
-about your objects, especially when doing proofs.  Vector addition is
-easy, here is an example from $\complex{4}$.
+\textit{vectors.}  And this definition of our new meaning is built on
+our previous meaning of addition via the expressions $u_i+v_i$.
 
 \begin{example}[Addition of two vectors in $\complex{4}$]
   If
@@ -124,28 +68,28 @@ order to emphasize that it is not a vector.
 
 Notice that we are doing a kind of multiplication here, but we are
 \textit{defining} a new type, perhaps in what appears to be a natural
-way.  We use juxtaposition (smashing two symbols together
-side-by-side) to denote this operation rather than using a symbol like
-we did with vector addition.  So this can be another source of
-confusion.  When two symbols are next to each other, are we doing
-regular old multiplication, the kind we have done for years, or are we
-doing scalar vector multiplication, the operation we just defined?
-Think about your objects---if the first object is a scalar, and the
-second is a vector, then it \textit{must} be that we are doing our new
-operation, and the \textit{result} of this operation will be another
-vector.
+way.  We use juxtaposition to denote this operation rather than using
+a symbol like we did with vector addition.  So this can be another
+source of confusion.  When two symbols are next to each other, are we
+doing regular old multiplication or are we doing scalar vector
+multiplication, the operation we just defined?  Think about your
+objects---if the first object is a scalar, and the second is a vector,
+then it \textit{must} be that we are doing our new operation, and the
+\textit{result} of this operation will be another vector.
 
-Notice how consistency in notation can be an aid here.  If we write
-scalars as lower case Greek letters from the start of the alphabet
-(such as $\alpha$, $\beta$, ldots ) and write vectors in bold Latin
-letters from the end of the alphabet ($\vect{u}$, $\vect{v}$, ldots ),
-then we have some hints about what type of objects we are working
-with.  This can be a blessing \textit{and} a curse, since when we go
-read another book about linear algebra, or read an application in
-another discipline (physics, economics, ldots ) the types of notation
-employed may be very different and hence unfamiliar.
+\begin{warning}
+  Notice how consistency in notation can be an aid here.  If we write
+  scalars as lower case Greek letters from the start of the alphabet
+  (such as $\alpha$, $\beta$, \ldots ) and write vectors in Latin
+  letters from the end of the alphabet ($\vect{u}$, $\vect{v}$, \ldots
+  ), then we have some hints about what type of objects we are working
+  with.  This can be a blessing \textit{and} a curse, since when we go
+  read another book about linear algebra, or read an application in
+  another discipline (physics, economics, ldots ) the types of
+  notation employed may be very different and hence unfamiliar.
+\end{warning}
 
-Again, computationally, vector scalar multiplication is very easy.
+Computationally, vector scalar multiplication is easy.
 
 \begin{example}[Scalar multiplication in $\complex{5}$]
   If
@@ -155,9 +99,9 @@ Again, computationally, vector scalar multiplication is very easy.
   and $\alpha=6$, then
   \[
     \alpha\vect{u}=
-    6\colvector{3\\1\\-2\\4\\-1}=
-    \colvector{6(3)\\6(1)\\6(-2)\\6(4)\\6(-1)}=
-    \colvector{18\\6\\-12\\24\\-6}.
+    6\colvector{3\\1\\\answer{-2}\\4\\-1}=
+%    \colvector{6(3)\\6(1)\\6(-2)\\6(4)\\6(-1)}=
+    \colvector{18\\6\\\answer{-12}\\24\\-6}.
   \]
 \end{example}
 
