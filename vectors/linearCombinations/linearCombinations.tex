@@ -83,18 +83,46 @@ that results (a single vector).
       \colvector{-22\\\answer{20}\\1\\1\\-10\\24}
   \end{align*}
   Notice how we could keep our set of vectors fixed, and use different
-  sets of scalars to construct different vectors.  You might build a
-  few new linear combinations of
-  $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3,\,\vect{u}_4$ right now.  We
-  will be right here when you get back.  What vectors were you able to
-  create?  Do you think you could create the vector 
-  \[\vect{w}=\colvector{13\\15\\5\\-17\\2\\25}\]
-  ``suitable'' choice of four scalars?
+  sets of scalars to construct different vectors.  
+
+  \begin{question}
+    You might build a
+    few new linear combinations of
+    $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3,\,\vect{u}_4$ right now.  We
+    will be right here when you get back.  What vectors were you able to
+    create?  Do you think you could create the vector 
+    \[\vect{w}=\colvector{13\\15\\5\\-17\\2\\25}\]
+    ``suitable'' choice of four scalars?
   
-  Do you think you could create \textit{any} possible vector from
-  $\complex{6}$ by choosing the proper scalars?  These questions are
-  very fundamental, and time spent considering them \textit{now} will
-  prove beneficial later.
+    \begin{multipleChoice}
+      \choice{Yes.}
+      \choice[correct]{No.}
+    \end{multipleChoice}
+
+    \begin{feedback}[correct]
+      No, it is not possible to create $\vect{w}$ as a linear
+      combination of the four vectors
+      $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3,\,\vect{u}_4$.  By
+      creating the desired linear combination with unknowns as
+      scalars, \ref{theorem:SLSLC} provides a system of equations that
+      has no solution.  This one computation is enough to show us that
+      it is not possible to create all the vectors of $\complex{6}$
+      through linear combinations of the four vectors
+      $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3,\,\vect{u}_4$.
+
+      So not every vector in $\complex{6}$ can be expressed as a
+      linear combination of
+      $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3,\,\vect{u}_4$.  But if we
+      chose four other vectors
+      $\vect{b}_1,\,\vect{b}_2,\,\vect{b}_3,\,\vect{b}_4$, could it be
+      possible that \textit{every} vector from $\complex{6}$ can be
+      expressed as a linear combination of those four vectors
+      $\vect{b}_1,\,\vect{b}_2,\,\vect{b}_3,\,\vect{b}_4$?  Questions
+      like this one are fundamental, and time spent considering them
+      \textit{now} will prove beneficial later.
+    \end{feedback}
+  \end{question}
+
 \end{example}
 
 \begin{example}

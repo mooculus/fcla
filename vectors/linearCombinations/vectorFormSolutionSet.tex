@@ -316,19 +316,38 @@ example.
   how to combine them in a linear combinations to create solution
   vectors.
 
-  Suppose you were told that the vector $\vect{w}$ below was a solution to this system of equations.  Could you turn the problem around and write $\vect{w}$ as a linear combination of the four vectors $\vect{c}$, $\vect{u}_1$, $\vect{u}_2$, $\vect{u}_3$?
-  \begin{align*}
-    \vect{w}&=\colvector{100\\-75\\7\\9\\-37\\35\\-8}
-            &
-              \vect{c}&=\colvector{15\\ -10\\ 0\\ 0\\ 11\\ -21\\ 0}
-            &
-              \vect{u}_1&=\colvector{-2\\ 5\\ 1\\ 0\\ 0\\ 0\\ 0}
-            &
-              \vect{u}_2&=\colvector{3\\ -4\\ 0\\ 1\\ 0\\ 0\\ 0}
-            &
-              \vect{u}_3&=\colvector{-9\\ 8\\ 0\\ 0\\ 6\\ -7\\ 1}
-  \end{align*}
+  \begin{question}
+    Is the vector 
+    \[
+      \vect{w}=\colvector{100\\-75\\7\\9\\-37\\35\\-8}
+    \]
+    a solution to this system of equations?
 
+    \begin{multipleChoice}
+      \choice{No.}
+      \choice[correct]{Yes.}
+    \end{multipleChoice}
+
+    \begin{feedback}[correct]
+      You could turn the problem around and write $\vect{w}$ as a
+      linear combination of the four vectors $\vect{c}$, $\vect{u}_1$,
+      $\vect{u}_2$, $\vect{u}_3$.
+      \begin{align*}
+        \vect{c}&=\colvector{15\\ -10\\ 0\\ 0\\ 11\\ -21\\ 0}
+                &
+                  \vect{u}_1&=\colvector{-2\\ 5\\ 1\\ 0\\ 0\\ 0\\ 0}
+                &
+                  \vect{u}_2&=\colvector{3\\ -4\\ 0\\ 1\\ 0\\ 0\\ 0}
+                &
+                  \vect{u}_3&=\colvector{-9\\ 8\\ 0\\ 0\\ 6\\ -7\\ 1}
+      \end{align*}
+      In that case, the coefficient of $\vect{c}$ is 1.  The
+      coefficients of $\vect{u}_1$, $\vect{u}_2$, $\vect{u}_3$ lie in
+      the third, fourth and seventh entries of $\vect{w}$.  Can you
+      see why?  (Hint: $F=\set{3,\,4,\,7,\,8}$, so the free variables
+      are $x_3,\,x_4$ and $x_7$.)
+    \end{feedback}
+  \end{question}
 \end{example}
 
 Did you think a few weeks ago that you could so quickly and easily
@@ -337,6 +356,5 @@ variables?
 
 In the next activity, We will now formalize the last two (important)
 examples as a theorem.
-
 
 \end{document}
