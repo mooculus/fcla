@@ -369,17 +369,20 @@ item of the correct type is in the set, or not in the set.
         \alpha_1+\alpha_2&=3
       \end{align*}
       Building the augmented matrix for this linear system, and row-reducing, gives,
-      \[\begin{bmatrix}
-        \leading{1} & 0 & 1 & 0\\
-        0 & \leading{1} & -1 & 0\\
-        0 & 0 & 0 & \leading{1}
-      \end{bmatrix}\]
-
-    This system is inconsistent (there is a pivot column in the last
-    column, \ref{theorem:RCLS}), so there are no scalars
-    $\alpha_1,\,\alpha_2,\,\alpha_3$ that will create a linear
-    combination of $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3$ that equals
-    $\vect{y}$.  More precisely, $\vect{y}\not\in\spn{S}$.
+      \[
+        \begin{bmatrix}
+          \leading{1} & 0 & 1 & 0\\
+          0 & \leading{1} & -1 & 0\\
+          0 & 0 & 0 & \leading{1}
+        \end{bmatrix}
+      \]
+      
+      This system is inconsistent (there is a pivot column in the last
+      column, \ref{theorem:RCLS}), so there are no scalars
+      $\alpha_1,\,\alpha_2,\,\alpha_3$ that will create a linear
+      combination of $\vect{u}_1,\,\vect{u}_2,\,\vect{u}_3$ that equals
+      $\vect{y}$.  More precisely, $\vect{y}\not\in\spn{S}$.
+    \end{feedback}
   \end{question}
 
   There are three things to observe in this example.  First, it is
