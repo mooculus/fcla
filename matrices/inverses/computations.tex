@@ -401,41 +401,42 @@ is still open.  (But see \ref{theorem:NI} in the next section.)
 We will finish by computing the inverse in another example.
 
 \begin{example}[Computing a matrix inverse]
-Consider the matrix
-\begin{align*}
-B=&\begin{bmatrix}
--7&-6&-12\\
- 5&5&7\\
- 1&0&4
-\end{bmatrix}
-\end{align*}
-Exercising \ref{theorem:CINM} we set
-\begin{align*}
-M=&
-\begin{bmatrix}
--7&-6&-12&1&0&0\\
- 5&5&7&0&1&0\\
- 1&0&4&0&0&1
-\end{bmatrix}
-\end{align*}
-which row reduces to
-\begin{align*}
-N=&
-\begin{bmatrix}
-1&0&0&\answer{-10} & -12 & -9\\
-0&1&0&\frac{13}{2} & 8 & \frac{11}{2}\\
-0&0&1&\frac{5}{2} & 3 & \frac{5}{2}
-\end{bmatrix}.\\
-And so
-\begin{align*}
-\inverse{B}=&
-\begin{bmatrix}
--10 & -12 & -9\\
-\frac{13}{2} & 8 & \frac{11}{2}\\
-\frac{5}{2} & 3 & \frac{5}{2}
-\end{bmatrix}
-\end{align*}
-once we check that $\inverse{B}B=I_3$ (the product in the opposite order is a consequence of the theorem).
+  Consider the matrix
+  \begin{align*}
+    B=&\begin{bmatrix}
+      -7&-6&-12\\
+      5&5&7\\
+      1&0&4
+    \end{bmatrix}
+  \end{align*}
+  Exercising \ref{theorem:CINM} we set
+  \begin{align*}
+    M=&
+        \begin{bmatrix}
+          -7&-6&-12&1&0&0\\
+          5&5&7&0&1&0\\
+          1&0&4&0&0&1
+        \end{bmatrix}
+  \end{align*}
+  which row reduces to
+  \begin{align*}
+    N=&
+        \begin{bmatrix}
+          1&0&0&\answer{-10} & -12 & -9\\
+          0&1&0&\frac{13}{2} & 8 & \frac{11}{2}\\
+          0&0&1&\frac{5}{2} & 3 & \frac{5}{2}
+        \end{bmatrix}.\\
+  \end{align*}
+  And so
+  \begin{align*}
+    \inverse{B}=&
+                  \begin{bmatrix}
+                    -10 & -12 & -9\\
+                    \frac{13}{2} & 8 & \frac{11}{2}\\
+                    \frac{5}{2} & 3 & \frac{5}{2}
+                  \end{bmatrix}
+  \end{align*}
+  once we check that $\inverse{B}B=I_3$ (the product in the opposite order is a consequence of the theorem).
 \end{example}
 
 \end{document}
