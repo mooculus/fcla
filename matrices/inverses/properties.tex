@@ -24,11 +24,11 @@ A matrix can have but one inverse.
     inverses for $A$, so $AB=BA=I_n$ and $AC=CA=I_n$.  Then we have,
     \begin{align*}
       B
-      &=BI_n&&\ref{theorem:MMIM}\\
-      &=B(AC)&&\ref{definition:MI}\\
-      &=(BA)C&&\ref{theorem:MMA}\\
-      &=I_nC&&\ref{definition:MI}\\
-      &=C&&\ref{theorem:MMIM}
+      &=BI_n\\
+      &=B(AC)\\
+      &=(BA)C\\
+      &=I_nC \\
+      &=C
     \end{align*}
     So we conclude that $B$ and $C$ are the same, and cannot be different.  So any matrix that acts like \textit{an} inverse, must be \textit{the} inverse.
   \end{proof}
@@ -63,18 +63,18 @@ an invertible matrix and $\inverse{(AB)}=\inverse{B}\inverse{A}$.
   coffee shop, for quiet conversation:
   \begin{align*}
     (\inverse{B}\inverse{A})(AB)
-    &=\inverse{B}(\inverse{A}A)B&&\ref{theorem:MMA}\\
-    &=\inverse{B}I_nB&&\ref{definition:MI}\\
-    &=\inverse{B}B&&\ref{theorem:MMIM}\\
-    &=I_n&&\ref{definition:MI}
+    &=\inverse{B}(\inverse{A}A)B\\ %\ref{theorem:MMA}\\
+    &=\inverse{B}I_nB\\ %\ref{definition:MI}\\
+    &=\inverse{B}B\\ %\ref{theorem:MMIM}\\
+    &=I_n\\ %\ref{definition:MI}
   \end{align*}
   The first date having gone smoothly, a second, more serious, date is arranged, say dinner and a show:
   \begin{align*}
     (AB)(\inverse{B}\inverse{A})
-    &=A(B\inverse{B})\inverse{A}&&\ref{theorem:MMA}\\
-    &=AI_n\inverse{A}&&\ref{definition:MI}\\
-    &=A\inverse{A}&&\ref{theorem:MMIM}\\
-    &=I_n&&\ref{definition:MI}
+    &=A(B\inverse{B})\inverse{A}\\ %\ref{theorem:MMA}\\
+    &=AI_n\inverse{A}\\ %\ref{definition:MI}\\
+    &=A\inverse{A}\\ %\ref{theorem:MMIM}\\
+    &=I_n\\ %\ref{definition:MI}
   \end{align*}
 
   So the matrix $\inverse{B}\inverse{A}$ has met all of the
@@ -92,10 +92,12 @@ an invertible matrix and $\inverse{(AB)}=\inverse{B}\inverse{A}$.
   \begin{proof}
     As with the proof of \ref{theorem:SS}, we examine if $A$ is a suitable inverse for $\inverse{A}$ (by definition, the opposite is true).
     \begin{align*}
-      A\inverse{A}&=I_n&&\ref{definition:MI}
-                          <intertext>and</intertext>
-                          \inverse{A}A&=I_n&&\ref{definition:MI}
-    \end{align*}
+      A\inverse{A}&=I_n\\ %\ref{definition:MI}
+      \end{align*}
+      and
+      \begin{align*}
+        \inverse{A}A&=I_n\\ %\ref{definition:MI}
+      \end{align*}
 
     The matrix $A$ has met all the requirements to be the inverse of $\inverse{A}$, and so is invertible and we can write $A=\inverse{(\inverse{A})}$.
 
@@ -111,14 +113,16 @@ an invertible matrix and $\inverse{(AB)}=\inverse{B}\inverse{A}$.
     As with the proof of \ref{theorem:SS}, we see if $\transpose{(\inverse{A})}$ is a suitable inverse for $\transpose{A}$. Apply \ref{theorem:MMT} to see that
     \begin{align*}
       \transpose{(\inverse{A})}\transpose{A}
-      &=\transpose{(A\inverse{A})}&&\ref{theorem:MMT}\\
-      &=\transpose{I_n}&&\ref{definition:MI}\\
-      &=I_n&&\ref{definition:SYM}
-              <intertext>and</intertext>
-              \transpose{A}\transpose{(\inverse{A})}
-      &=\transpose{(\inverse{A}A)}&&\ref{theorem:MMT}\\
-      &=\transpose{I_n}&&\ref{definition:MI}\\
-      &=I_n&&\ref{definition:SYM}
+      &=\transpose{(A\inverse{A})}\\ %\ref{theorem:MMT}\\
+      &=\transpose{I_n}\\ %\ref{definition:MI}\\
+      &=I_n\\ %\ref{definition:SYM}
+      \end{align*}
+      and
+      \begin{align*}
+        \transpose{A}\transpose{(\inverse{A})}
+      &=\transpose{(\inverse{A}A)}\\ %\ref{theorem:MMT}\\
+      &=\transpose{I_n}\\ %\ref{definition:MI}\\
+      &=I_n\\ %\ref{definition:SYM}
     \end{align*}
 
     The matrix $\transpose{(\inverse{A})}$ has met all the
@@ -142,14 +146,16 @@ an invertible matrix and $\inverse{(AB)}=\inverse{B}\inverse{A}$.
     As with the proof of \ref{theorem:SS}, we see if $\frac{1}{\alpha}\inverse{A}$ is a suitable inverse for $\alpha A$.
     \begin{align*}
       \left(\frac{1}{\alpha}\inverse{A}\right)\left(\alpha A\right)
-      &=\left(\frac{1}{\alpha}\alpha\right)\left(\inverse{A}A\right)&&\ref{theorem:MMSMM}\\
+      &=\left(\frac{1}{\alpha}\alpha\right)\left(\inverse{A}A\right)\\ %\ref{theorem:MMSMM}\\
       &=1I_n&&\text{Scalar multiplicative inverses}\\
-      &=I_n&&\ref{property:OM}
-              <intertext>and</intertext>
+      &=I_n\\ %\ref{property:OM}
+      \end{align*}
+      and
+      \begin{align*}
               \left(\alpha A\right)\left(\frac{1}{\alpha}\inverse{A}\right)&=
-                                                                             \left(\alpha\frac{1}{\alpha}\right)\left(A\inverse{A}\right)&&\ref{theorem:MMSMM}\\
+                                                                             \left(\alpha\frac{1}{\alpha}\right)\left(A\inverse{A}\right)\\ %\ref{theorem:MMSMM}\\
       &=1I_n&&\text{Scalar multiplicative inverses}\\
-      &=I_n&&\ref{property:OM}
+      &=I_n\\ %\ref{property:OM}
     \end{align*}
 
     The matrix $\frac{1}{\alpha}\inverse{A}$ has met all the
