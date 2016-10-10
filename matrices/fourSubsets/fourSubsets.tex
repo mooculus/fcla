@@ -389,26 +389,26 @@ We will now illustrate \ref{theorem:FS} with a few examples.
   We form the matrix $M$ by adjoining the $6\times 6$ identity matrix $I_6$,
   \[
     M=
-    \begin{bmatrix}
+    \left[\begin{array}{@{}*{12}{c}@{}}
       10 & 0 & 3 & 8 & 7 & 1 & 0 & 0 & 0 & 0 & 0 \\
       -16 & -1 & -4 & -10 & -13 & 0 & 1 & 0 & 0 & 0 & 0 \\
       -6 & 1 & -3 & -6 & -6 & 0 & 0 & 1 & 0 & 0 & 0 \\
       0 & 2 & -2 & -3 & -2 & 0 & 0 & 0 & 1 & 0 & 0 \\
       3 & 0 & 1 & 2 & 3 & 0 & 0 & 0 & 0 & 1 & 0 \\
       -1 & -1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1
-    \end{bmatrix}
+    \end{array}\right]
   \]
   and row-reduce to obtain $N$
   \[
     N=
-    \begin{bmatrix}
+    \left[\begin{array}{@{}*{12}{c}@{}}
       \leading{1} & 0 & 0 & 0 & 2 & 0 & 0 & 1 & -1 & 2 & -1 \\
       0 & \leading{1} & 0 & 0 & -3 & 0 & 0 & -2 & 3 & -3 & 3 \\
       0 & 0 & \leading{1} & 0 & 1 & 0 & 0 & 1 & 1 & 3 & 3 \\
       0 & 0 & 0 & \leading{1} & -2 & 0 & 0 & -2 & 1 & -4 & 0 \\
       0 & 0 & 0 & 0 & 0 & \leading{1} & 0 & 3 & -1 & 3 & 1 \\
       0 & 0 & 0 & 0 & 0 & 0 & \leading{1} & -2 & 1 & 1 & -1
-    \end{bmatrix}
+          \end{array}\right]
   \]
   
   To find the four subsets for $A$, we only need identify the
