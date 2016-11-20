@@ -95,65 +95,65 @@ So by this construction, we know that $A$ and $B$ are \wordChoice{\choice[correc
 
 Let us do that again.
 
-
-
 \begin{example}[Similar matrices of size 3]
-Define
-\begin{align*}
-B=\begin{bmatrix}
--13 & -8 & -4 \\
-12 & 7 & 4 \\
-24 & 16 & 7
-\end{bmatrix}
-&&
-S=\begin{bmatrix}
-1 & 1 & 2 \\
--2 & -1 & -3 \\
-1 & -2 & 0
-\end{bmatrix}
-\end{align*}
-
-
-Check that $S$ is nonsingular and then compute
-\begin{align*}
-A&=\similar{B}{S}\\
-&=
-\begin{bmatrix}
--6 & -4 & -1 \\
--3 & -2 & -1 \\
-5 & 3 & 1
-\end{bmatrix}
-\begin{bmatrix}
--13 & -8 & -4 \\
-12 & 7 & 4 \\
-24 & 16 & 7
-\end{bmatrix}
-\begin{bmatrix}
-1 & 1 & 2 \\
--2 & -1 & -3 \\
-1 & -2 & 0
-\end{bmatrix}\\
-&=
-\begin{bmatrix}
--1 & 0 & 0 \\
-0 & 3 & 0 \\
-0 & 0 & -1
-\end{bmatrix}
-\end{align*}
-
-So by this construction, we know that $A$ and $B$ are similar.  But before we move on, look at how pleasing the form of $A$ is.  Not convinced?  Then consider that several computations related to $A$ are especially easy.
-
-For example,
-\[
+  Define
+  \begin{align*}
+    B=\begin{bmatrix}
+      -13 & -8 & -4 \\
+      12 & 7 & 4 \\
+      24 & 16 & 7
+    \end{bmatrix}
+         &&
+            S=\begin{bmatrix}
+              1 & 1 & 2 \\
+              -2 & -1 & -3 \\
+              1 & -2 & 0
+            \end{bmatrix}
+  \end{align*}
+  
+  
+  Check that $S$ is nonsingular and then compute
+  \begin{align*}
+    A&=\similar{B}{S}\\
+     &=
+       \begin{bmatrix}
+         -6 & -4 & -1 \\
+         -3 & -2 & -1 \\
+         5 & 3 & 1
+       \end{bmatrix}
+                 \begin{bmatrix}
+                   -13 & -8 & -4 \\
+                   12 & 7 & 4 \\
+                   24 & 16 & 7
+                 \end{bmatrix}
+                             \begin{bmatrix}
+                               1 & 1 & 2 \\
+                               -2 & -1 & -3 \\
+                               1 & -2 & 0
+                             \end{bmatrix}\\
+     &=
+       \begin{bmatrix}
+         -1 & 0 & 0 \\
+         0 & 3 & 0 \\
+         0 & 0 & -1
+       \end{bmatrix}
+  \end{align*}
+  
+  So by this construction, we know that $A$ and $B$ are similar.  But
+  before we move on, look at how pleasing the form of $A$ is.  Not
+  convinced?  Then consider that several computations related to $A$
+  are especially easy.
+  
+  For example,
   $\detname{A}=(-1)(3)(-1)=\answer{3}$.
-Similarly, the characteristic polynomial
-is straightforward to compute by hand,
-\[
-\charpoly{A}{x}=(-1-x)(3-x)(-1-x)=-(x-3)(x+\answer{1})^2
-\]
-and since the result is already factored, the eigenvalues are
-transparently $\lambda=3,\,-1$.  Finally, the eigenvectors of $A$ are
-just the standard unit vectors (\ref{definition:SUV}).  Are similar facts true for $B$?
+  Similarly, the characteristic polynomial
+  is straightforward to compute by hand,
+  \[
+    \charpoly{A}{x}=(-1-x)(3-x)(-1-x)=-(x-3)(x+\answer{1})^2
+  \]
+  and since the result is already factored, the eigenvalues are
+  transparently $\lambda=3,\,-1$.  Finally, the eigenvectors of $A$ are
+  just the standard unit vectors (\ref{definition:SUV}).  Are similar facts true for $B$?
 \end{example}
 
 \end{document}
